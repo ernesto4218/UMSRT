@@ -1,0 +1,261 @@
+<div class="p-5 md:w-[50%] h-full">
+
+    <div class="relative">
+        <img src="/img/pagadian/5.png" alt="" class="w-full h-[200px] object-center object-cover rounded-t-2xl">
+        <div class="absolute bottom-0 left-0 w-full h-[100px] bg-gradient-to-b to-black/70 from-transparent z-10 rounded-b-2xl"></div>
+        <p class="absolute bottom-2 left-2 text-white font-semibold text-xl z-20">Pagadian City</p>
+    </div>
+    <p class="text-3xl text-black font-bold mt-5">Submission Form</p>
+    <p class="text-sm text-black font-normal">Please provide the requested information in the sections below. This helps us gather essential details about your personal background, work experience, career aspirations, skills, and education. We also ask for account creation details to enable your access to our services. All required fields are marked and must be completed to submit your application.</p>
+    <form id="submissionForm" class="mt-5">
+        <div class="flex flex-col gap-1">
+            <p class="text-sm text-black font-semibold">Personal Information</p>
+            <div class="flex flex-row gap-4 mt-2">
+                <div class="w-full">
+                    <label for="first_name" class="block mb-2 text-xs font-medium text-gray-900">First name</label>
+                    <input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Juan" required />
+                </div>
+                <div class="w-full">
+                    <label for="middle_name" class="block mb-2 text-xs font-medium text-gray-900">Middle name</label>
+                    <input type="text" id="middle_name" name="middle_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Dela" required />
+                </div>
+                <div class="w-full">
+                    <label for="last_name" class="block mb-2 text-xs font-medium text-gray-900">Last name</label>
+                    <input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Cruz" required />
+                </div>
+            </div>
+            <div class="flex flex-row gap-4 mt-2">
+                <div class="w-full">
+                    <label for="date_of_birth" class="block mb-2 text-xs font-medium text-gray-900">Date of Birth</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="MM/DD/YYYY" required />
+                </div>
+                <div class="w-full">
+                    <label for="age" class="block mb-2 text-xs font-medium text-gray-900">Age</label>
+                    <input type="text" id="age" name="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., 30" required readonly />
+                </div>
+            </div>
+
+            <div class="mt-2 w-full">
+                <label for="barangay" class="block mb-2 text-xs font-medium text-gray-900">Barangay</label>
+                <select id="barangay" name="barangay" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    <option value="">Choose your Barangay</option>
+                    <option value="Alegria">Alegria</option>
+                    <option value="Balangasan">Balangasan</option>
+                    <option value="Balintawak">Balintawak</option>
+                    <option value="Baloyboan">Baloyboan</option>
+                    <option value="Banale">Banale</option>
+                    <option value="Bogo">Bogo</option>
+                    <option value="Bomba">Bomba</option>
+                    <option value="Buenavista">Buenavista</option>
+                    <option value="Bulatok">Bulatok</option>
+                    <option value="Bulawan">Bulawan</option>
+                    <option value="Dampalan">Dampalan</option>
+                    <option value="Danlugan">Danlugan</option>
+                    <option value="Dao">Dao</option>
+                    <option value="Datagan">Datagan</option>
+                    <option value="Deborok">Deborok</option>
+                    <option value="Ditoray">Ditoray</option>
+                    <option value="Dumagoc">Dumagoc</option>
+                    <option value="Gatas">Gatas</option>
+                    <option value="Gubac">Gubac</option>
+                    <option value="Gubang">Gubang</option>
+                    <option value="Kagawasan">Kagawasan</option>
+                    <option value="Kahayagan">Kahayagan</option>
+                    <option value="Kalasan">Kalasan</option>
+                    <option value="Kawit">Kawit</option>
+                    <option value="La Suerte">La Suerte</option>
+                    <option value="Lala">Lala</option>
+                    <option value="Lapidian">Lapidian</option>
+                    <option value="Lenienza">Lenienza</option>
+                    <option value="Lizon Valley">Lizon Valley</option>
+                    <option value="Lordes">Lordes</option>
+                    <option value="Lower Sibatang">Lower Sibatang</option>
+                    <option value="Lumad">Lumad</option>
+                    <option value="Lumbia">Lumbia</option>
+                    <option value="Macasing">Macasing</option>
+                    <option value="Manga">Manga</option>
+                    <option value="Muricay">Muricay</option>
+                    <option value="Napolan">Napolan</option>
+                    <option value="Palpalan">Palpalan</option>
+                    <option value="Pedulonan">Pedulonan</option>
+                    <option value="Poloyagan">Poloyagan</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="San Jose">San Jose</option>
+                    <option value="San Pedro">San Pedro</option>
+                    <option value="Sta. Lucia">Sta. Lucia</option>
+                    <option value="Sta. Maria">Sta. Maria</option>
+                    <option value="Santiago">Santiago</option>
+                    <option value="Sto. Niño">Sto. Niño</option>
+                    <option value="Tawagan Sur">Tawagan Sur</option>
+                    <option value="Tiguma">Tiguma</option>
+                    <option value="Tuburan">Tuburan</option>
+                    <option value="Tulangan">Tulangan</option>
+                    <option value="Tulawas">Tulawas</option>
+                    <option value="Upper Sibatang">Upper Sibatang</option>
+                    <option value="White Beach">White Beach</option>
+                </select>
+            </div>
+
+            <p class="text-sm text-black font-semibold mt-5">Job History and Career Plans</p>
+            <p class="text-sm text-black font-semibold mt-5">Leave empty if no job history or currently unemployed.</p>
+            <div class="flex flex-row gap-4">
+                <div class="w-full">
+                    <label for="previous_employment_1" class="block mb-2 text-xs font-medium text-gray-900">Previous Employment 1</label>
+                    <input type="text" id="previous_employment_1" name="previous_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Company Name, Position" />
+                </div>
+                <div class="w-full">
+                    <label for="previous_employment_2" class="block mb-2 text-xs font-medium text-gray-900">Previous Employment 2</label>
+                    <input type="text" id="previous_employment_2" name="previous_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Optional: Company Name, Position" />
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-4 mt-2">
+                <div class="w-full">
+                    <label for="current_employment_1" class="block mb-2 text-xs font-medium text-gray-900">Current Employment 1</label>
+                    <input type="text" id="current_employment_1" name="current_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Current Company, Position" />
+                </div>
+                <div class="w-full">
+                    <label for="current_employment_2" class="block mb-2 text-xs font-medium text-gray-900">Current Employment 2</label>
+                    <input type="text" id="current_employment_2" name="current_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Optional: Current Company, Position" />
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-4 mt-2">
+                <div class="w-full">
+                    <label for="future_employment_1" class="block mb-2 text-xs font-medium text-gray-900">Future Employment 1</label>
+                    <input type="text" id="future_employment_1" name="future_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Desired Role, Industry" />
+                </div>
+                <div class="w-full">
+                    <label for="future_employment_2" class="block mb-2 text-xs font-medium text-gray-900">Future Employment 2</label>
+                    <input type="text" id="future_employment_2" name="future_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Optional: Another desired role" />
+                </div>
+            </div>
+
+            <p class="text-sm text-black font-semibold mt-5">Skills and Experience</p>
+            <div class="w-full mt-2">
+                <label for="your_skills" class="block text-xs font-medium text-gray-900">Your Skills</label>
+                <label for="your_skills" class="block mb-2 text-xs font-normal text-gray-900">Separate in comma</label>
+                <textarea id="your_skills" name="your_skills" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., Project Management, Data Analysis, Customer Service" required></textarea>
+            </div>
+
+            <p class="text-sm text-black font-semibold mt-5">Education</p>
+            <div class="flex flex-col gap-4 mt-2">
+                <div class="w-full">
+                    <label for="elementary_education" class="block mb-2 text-xs font-medium text-gray-900">Elementary</label>
+                    <input type="text" id="elementary_education" name="elementary_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
+                </div>
+                <div class="w-full">
+                    <label for="high_school_education" class="block mb-2 text-xs font-medium text-gray-900">High School</label>
+                    <input type="text" id="high_school_education" name="high_school_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
+                </div>
+                <div class="w-full">
+                    <label for="college_education" class="block mb-2 text-xs font-medium text-gray-900">College</label>
+                    <input type="text" id="college_education" name="college_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., University Name, Year Graduated" required />
+                </div>
+                <div class="w-full">
+                    <label for="course_taken" class="block mb-2 text-xs font-medium text-gray-900">Course</label>
+                    <input type="text" id="course_taken" name="course_taken" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Bachelor of Science in IT" required />
+                </div>
+            </div>
+
+            <p class="text-sm text-black font-semibold mt-5">Create Account</p>
+            <div class="flex flex-row gap-4 mt-2">
+                <div class="w-full">
+                    <label for="email" class="block mb-2 text-xs font-medium text-gray-900">Email</label>
+                    <input type="text" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., juan.delacruz@example.com" required />
+                </div>
+                <div class="w-full">
+                    <label for="password" class="block mb-2 text-xs font-medium text-gray-900">Password</label>
+                    <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Minimum 8 characters" required />
+                </div>
+            </div>
+
+            <button type="submit" class="mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 focus:outline-none">
+                Submit Application
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const birthInput = document.getElementById('date_of_birth');
+    const ageInput = document.getElementById('age');
+
+    birthInput.addEventListener('change', () => {
+        const birthDate = new Date(birthInput.value);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        ageInput.value = birthInput.value ? age : '';
+    });
+
+    const form = document.getElementById("submissionForm");
+
+    // 👇 Fill form with sample values
+    function fillFormWithSampleData() {
+        form.first_name.value = "Juan";
+        form.middle_name.value = "Dela";
+        form.last_name.value = "Cruz";
+        form.date_of_birth.value = "1998-05-15";
+        form.age.value = "26"; // Or auto-calculate
+        form.barangay.value = "Banale";
+        form.previous_employment_1.value = "ABC Corp, Technician";
+        form.previous_employment_2.value = "XYZ Inc, Analyst";
+        form.current_employment_1.value = "NowWorks, Developer";
+        form.current_employment_2.value = "RemoteFirm, Consultant";
+        form.future_employment_1.value = "Project Manager, IT";
+        form.future_employment_2.value = "Full Stack Developer";
+        form.your_skills.value = "JavaScript, Node.js, HTML, CSS";
+        form.elementary_education.value = "Banale Elementary, 2010";
+        form.high_school_education.value = "Pagadian High, 2014";
+        form.college_education.value = "WMSU, 2018";
+        form.course_taken.value = "BS in Information Technology";
+        form.email.value = "juan.delacruz@example.com";
+        form.password.value = "password123";
+    }
+
+    function getFormData() {
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+        return data;
+    }
+
+    // 🧪 Fill with sample data automatically on load (for demo)
+    // fillFormWithSampleData();
+
+    // 🚀 Simulate submission (example: log data)
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); 
+        const data = getFormData();
+        console.log("Form Data Submitted:", data);
+        fetch('/api/submitform', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: data }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                showToast('success', "Application submitted"); 
+               
+            } else {
+                showToast('error', data.message);
+            }
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            showToast('error', "Something went wrong");
+        });
+    });
+</script>

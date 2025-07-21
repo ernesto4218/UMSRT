@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen w-screen">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/output.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
+    <% if (path.includes('/admin/dashboard')) { %>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <% } %>
+    
+    <% if (path.includes('/admin/submissions')) { %>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <% } %>
+
+    <% if (path.includes('/admin/barangays')) { %>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <% } %>
+
+     <% if (path.includes('/form')) { %>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <% } %>
+
+     <% if (path.includes('/facebook')) { %>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <% } %>
+
+    <style>
+        .leaflet-popup-content {
+            padding: 2px 2px;
+            max-width: 120px; /* or whatever fits your content */
+            white-space: normal; /* prevent content from forcing width */
+        }
+
+        .leaflet-popup-content p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.1;
+            margin-top: 5px;
+        }
+
+    </style>
+    <title><%- title %></title>
+</head>
+<body>
+    <div class="wrapper w-screen h-screen bg-white overflow-hidden">
+        <main class="w-full h-full flex flex-row relative">
+            <!-- toasts  -->
+            <%- include('../partials/toasts') %>
+            <%- include('../partials/deletemodal') %>
+
+            <!-- home  -->
+            <% if (path === '/home') { %>
+                <%- include('../home') %>
+            <% } %>
+
+            <!-- admin  -->
+            <% if (path.includes('/admin/login')) { %>
+                <%- include('../admin/login') %>
+                <script src="/js/login.js"></script>
+            <% } %>
+
+            <% if (path.includes('/admin/dashboard')) { %>
+                <%- include('../admin/partials/barangayanalytics') %>
+                <%- include('../admin/partials/submissionanalytics') %>
+
+
+                <div class="flex w-full h-full flex-row">
+                    <%- include('../admin/partials/sidebar') %>
+                    <div class="flex flex-col w-screen h-screen overflow-y-auto">
+                        <%- include('../admin/partials/topbar') %>
+                        <%- include('../admin/dashboard') %>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+                <script src="/js/dashboard.js"></script>
+            <% } %>
+
+            <% if (path.includes('/admin/form')) { %>
+                <div class="flex w-full h-full flex-row">
+                    <%- include('../admin/partials/sidebar') %>
+                    <div class="flex flex-col w-screen h-screen overflow-y-auto">
+                        <%- include('../admin/partials/topbar') %>
+                        <%- include('../admin/form') %>
+                    </div>
+                </div>
+                <script src="/js/form.js"></script>
+            <% } %>
+
+            <% if (path.includes('/admin/barangays')) { %>
+                <%- include('../admin/partials/editbarangayform') %>
+                <div class="flex w-full h-full flex-row">
+                    <%- include('../admin/partials/sidebar') %>
+                    <div class="flex flex-col w-screen h-screen overflow-y-auto">
+                        <%- include('../admin/partials/topbar') %>
+                        <%- include('../admin/barangays') %>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+                <script src="/js/barangays.js"></script>
+            <% } %>
+
+            <% if (path.includes('/admin/submissions')) { %>
+                <%- include('../admin/partials/viewform') %>
+                <div class="flex w-full h-full flex-row">
+                    <%- include('../admin/partials/sidebar') %>
+                    <div class="flex flex-col w-screen h-screen overflow-y-auto">
+                        <%- include('../admin/partials/topbar') %>
+                        <%- include('../admin/submissions') %>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+                <script src="/js/submissions.js"></script>
+            <% } %>
+
+            <% if (path.includes('/admin/facebook')) { %>
+                <div class="flex w-full h-full flex-row">
+                    <%- include('../admin/partials/sidebar') %>
+                    <div class="flex flex-col w-screen h-screen overflow-y-auto">
+                        <%- include('../admin/partials/topbar') %>
+                        <%- include('../admin/facebook') %>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+                <script src="/js/facebook.js"></script>
+            <% } %>
+
+            <!-- form  -->
+            <% if (path.includes('/form')) { %>
+                <div class="flex w-screen h-full flex-row items-center justify-center overflow-y-auto">
+                    <%- include('../admin/partials/submissionform') %>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+                <script src="/js/form.js"></script>
+            <% } %>
+
+            <!-- users  -->
+            <% if (path.includes('/users/home')) { %>
+                <%- include('../users/home') %>
+                <script src="/js/users/home.js"></script>
+            <% } %>
+
+            <% if (path.includes('/users/login')) { %>
+                <%- include('../users/login') %>
+                <script src="/js/users/login.js"></script>
+            <% } %>
+        </main>
+    </div>
+</body>
+</html>

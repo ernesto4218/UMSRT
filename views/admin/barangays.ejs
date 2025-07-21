@@ -1,0 +1,103 @@
+<div class="w-full h-full bg-blue-50 rounded-tl-4xl relative flex overflow-y-auto p-5">
+    <table id="search-table">
+        <thead>
+            <tr>
+                <th>
+                    <span class="flex submissions-center">
+                        Id
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Name
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Employed
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Unemployed
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Latitude
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Longitude
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Population
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Date Added
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                        </svg>
+                    </span>
+                </th>
+                <th>
+                    <span class="flex submissions-center">
+                        Action
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (allBarangays) { %>
+                <% allBarangays.forEach(barangay => { %>
+                <tr>
+                    <td class="max-w-[120px] truncate "><%= barangay.id %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.name %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.employed %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.unemployed %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.lat %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.lng %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.population %></td>
+                    <td class="max-w-[120px] truncate "><%= barangay.date_added %></td>
+
+                    <td class="max-w-[100px] truncate ">
+                        <span 
+                            data-barangay="<%= JSON.stringify(barangay) %>" 
+                            class="editbtn cursor-pointer bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-0.5 rounded-sm"
+                        >
+                        Edit
+                    </span>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } %>
+            </tbody>
+
+    </table>
+</div>

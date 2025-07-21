@@ -1,0 +1,87 @@
+<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="/img/logo.jpg" class="bg-white rounded-full w-10 h-10">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap">UMSRT</span>
+    </a>
+    
+    <div class="flex flex-row gap-5 items-center justify-center">
+        <a href="/#home" class="text-sm font-semibold text-gray-700">Home</a>
+        <a href="/#overview" class="text-sm font-semibold text-gray-700">Overview</a>
+        <a href="/#features" class="text-sm font-semibold text-gray-700">Features</a>
+        <a href="/#objectives" class="text-sm font-semibold text-gray-700">Objectives</a>
+    </div>
+
+    <a href="/">
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse w-fit">
+            <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Go Back</button>
+        </div>
+    </a>
+</nav>
+
+<div class="flex flex-col items-center justify-center px-6 py-8 w-screen">
+    <div class="w-full bg-white rounded-xl shadow md:mt-0 sm:max-w-md xl:p-0">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                Log in
+            </h1>
+            <form id="loginform" class="space-y-2" action="#">
+                <div class="mb-5">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                    <input type="text" name="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="john@email.com" required="">
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                    <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="******" minlength="6" required="">
+                </div>
+                
+                <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</button>
+                <p class="text-sm font-light text-gray-500">
+                    Don't have an account? <a href="/form" class="font-medium text-blue-600 hover:underline">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+const loginform = document.getElementById('loginform');
+loginform.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const email = loginform.querySelector('#email').value;
+    const password = loginform.querySelector('#password').value;
+    
+    const data = {
+        email,
+        password,
+    };
+
+    try {
+        const response = await fetch('/api/login-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // ✅ correct for JSON
+            },
+            body: JSON.stringify(data) // ✅ convert JS object to JSON string
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            showToast('error', errorData.message || 'Unknown error');
+            console.error('Server error:', errorData);
+            return; 
+        }
+
+        const result = await response.json();
+        loginform.reset();
+        showToast('success', result.message);
+        location.replace('/users/home');
+        console.log('Server response:', result);
+    } catch (error) {
+        showToast('error', error.message);
+        console.error('Submit error:', error);
+    }
+});
+
+</script>

@@ -1,0 +1,43 @@
+<div class="w-full h-full bg-blue-50 rounded-tl-4xl relative flex flex-col justify-center items-center overflow-y-auto pt-20">
+    
+    <div class="grid grid-cols-8 gap-2 w-full max-w-[23rem]">
+        <label for="npm-install" class="sr-only">Label</label>
+        <input id="npm-install" type="text" class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="npm install flowbite" disabled readonly>
+        <button data-copy-to-clipboard-target="npm-install" class="col-span-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center items-center inline-flex justify-center">
+            <span id="default-message">Copy</span>
+            <span id="success-message" class="hidden">
+                <div class="inline-flex items-center">
+                    <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                    </svg>
+                    Copied!
+                </div>
+            </span>
+        </button>
+    </div>
+
+
+    <%- include('../admin/partials/submissionform') %>   
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const copyButtons = document.querySelectorAll('[data-copy-to-clipboard-target]');
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-copy-to-clipboard-target');
+                const input = document.getElementById(targetId);
+
+                if (!input) return;
+
+                // Copy the text
+                navigator.clipboard.writeText(input.value).then(() => {
+                    showToast('success', 'Link copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+    });
+    </script>
+
+</div>

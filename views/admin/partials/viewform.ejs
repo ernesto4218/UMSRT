@@ -1,0 +1,86 @@
+<div id="submittedformcontainer" class="hidden flex-col" id="drawcontainer">
+
+    <div class="fixed z-50 w-screen h-screen flex items-center justify-center">
+        <div id="submittedform" class="pointer-events-auto w-[40%] h-fit bg-white rounded-2xl p-4 flex flex-col gap-2 z-50">
+
+            <div class="w-full flex flex-row items-center justify-between">
+                <div class="w-full flex flex-col">
+                    <p class="text-black font-semibold text-lg">Submitted Information</p>
+                </div>
+                <div class="closesubmittedformbtn p-2 bg-gray-100 rounded-xl cursor-pointer text-gray-500 w-fit">
+                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col pt-2 border-t border-gray-300">
+                <p class="text-black font-semibold text-sm">Personal Information</p>
+                <p class="text-black font-normal text-xs flex flex-col mb-4">Date Submitted: <span class="text-sm font-medium date"></span></p>
+                <div class="flex flex-row">
+                    <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">First Name: <span class="text-sm font-medium first_name"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Middle Name: <span class="text-sm font-medium middle_name"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Last Name: <span class="text-sm font-medium last_name"></span></p>
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Date of birth: <span class="text-sm font-medium dob"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Age: <span class="text-sm font-medium age"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Barangay: <span class="text-sm font-medium address"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex flex-col pt-2 border-t border-gray-300">
+                <p class="text-black font-semibold text-sm mb-2">Job History and Career Plans</p>
+                <div class="flex flex-row">
+                    <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Previous Employment 1: <span class="text-sm font-medium pe_1"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Previous Employment 2: <span class="text-sm font-medium pe_2"></span></p>
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Current Employment 1: <span class="text-sm font-medium ce_1"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Current Employment 2: <span class="text-sm font-medium ce_2"></span></p>
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Future Employment 1: <span class="text-sm font-medium fe_1"></span></p>
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Future Employment 2: <span class="text-sm font-medium fe_2"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex flex-col pt-2 border-t border-gray-300">
+                <p class="text-black font-semibold text-sm mb-2">Skills and Experience</p>
+                <div class="flex flex-row">
+                    <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Skill: <span class="text-sm font-medium skills"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full flex flex-col pt-2 border-t border-gray-300">
+                <p class="text-black font-semibold text-sm mb-2">Education</p>
+                <div class="flex flex-row">
+                     <div class="flex flex-col w-full">
+                    <p class="text-black font-normal text-xs flex flex-col mb-2">Elementary: <span class="text-sm font-medium elementary"></span></p>
+                    </div>
+                     <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">Highschool: <span class="text-sm font-medium highschool"></span></p>
+                    </div>
+                     <div class="flex flex-col w-full">
+                        <p class="text-black font-normal text-xs flex flex-col mb-2">College: <span class="text-sm font-medium college"></span></p>
+                    </div>
+                </div>
+            </div>
+             <div class="w-full flex flex-col pt-2 border-t border-gray-300">
+                <p class="text-black font-semibold text-sm mb-2">Contact Information</p>
+                <div class="flex flex-row">
+                    <p class="text-black font-normal text-xs flex flex-col mb-2">Email: <span class="text-sm font-medium email"></span></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed w-screen h-screen z-40 bg-black/50 backdrop-blur-xs">
+        <div class="w-full h-full backdrop-blur-sm"></div>
+    </div>
+</div>

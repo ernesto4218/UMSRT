@@ -1,0 +1,89 @@
+<div class="w-full h-full bg-blue-50 rounded-tl-4xl relative">
+    <!-- info -->
+    <div class="absolute top-20 right-10 flex flex-col gap-4">
+        <div class="bg-white rounded-2xl w-[300px] h-auto z-10 flex flex-col shadow-2xl overflow-hidden">
+            <div class="relative">
+                <!-- Image -->
+                <img src="/img/pagadian/5.png" alt="" class="w-full h-[100px] object-cover">
+
+                <!-- Text on top of gradient -->
+                <p class="absolute bottom-2 left-2 text-white font-semibold text-sm z-20" style="text-shadow: 2px 2px 4px rgba(0,0,0,1);">
+                    Pagadian City
+                </p>
+            </div>
+
+            <!-- Info -->
+            <div class="flex flex-col gap-2 p-4">
+                <div class="flex flex-row gap-2">
+                <p class="text-gray-500 font-semibold text-xs">Province:</p>
+                <p class="text-black font-bold text-xs">Zamboanga del Sur</p>
+                </div>
+                <div class="flex flex-row gap-2">
+                <p class="text-gray-500 font-semibold text-xs">Barangays:</p>
+                <p class="text-black font-bold text-xs">54</p>
+                </div>
+                <div class="flex flex-row gap-2">
+                <p class="text-gray-500 font-semibold text-xs">Postal code:</p>
+                <p class="text-black font-bold text-xs">7016</p>
+                </div>
+                <div class="flex flex-row gap-2">
+                <p class="text-gray-500 font-semibold text-xs">Area (2013):</p>
+                <p class="text-black font-bold text-xs">378.80 km² (146.26 sq mi)</p>
+                </div>
+                <div class="flex flex-row gap-2">
+                <p class="text-gray-500 font-semibold text-xs">Population (2020):</p>
+                <p class="text-black font-bold text-xs">210,452</p>
+                </div>
+                <div class="flex flex-row gap-2">
+                <p class="text-gray-500 font-semibold text-xs">Coordinates:</p>
+                <p class="text-black font-bold text-xs">7° 49' N, 123° 26' E (7.8249, 123.4365)</p>
+                </div>
+            </div>
+            </div>
+
+
+    </div>
+    
+    <div class="absolute top-20 left-10 h-auto z-10 flex flex-col gap-4">
+        <div class="flex flex-col p-2 bg-white rounded-xl w-[150px] shadow-2xl">
+            <div class="flex flex-row items-center gap-2">
+                <div class="p-3 rounded-full bg-emerald-100">
+                    <svg class="w-4 h-4 text-emerald-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+                </div>
+                <div id="submittedbtn" class="cursor-pointer flex flex-col">
+                    <p class="text-black font-bold text-xl"><%= allsubmissions %></p>
+                    <p class="text-gray-500 font-semibold text-xs">Submitted</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-col p-2 bg-white rounded-xl w-[150px] shadow-2xl">
+            <div class="flex flex-row items-center gap-2">
+                <div class="p-3 rounded-full bg-blue-100">
+                    <svg class="w-4 h-4 text-blue-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M184 48l144 0c4.4 0 8 3.6 8 8l0 40L176 96l0-40c0-4.4 3.6-8 8-8zm-56 8l0 40L64 96C28.7 96 0 124.7 0 160l0 96 192 0 128 0 192 0 0-96c0-35.3-28.7-64-64-64l-64 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56zM512 288l-192 0 0 32c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32-14.3-32-32l0-32L0 288 0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-128z"/></svg>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-black font-bold text-xl"><%= employed %></p>
+                    <p class="text-gray-500 font-semibold text-xs">Employed</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col p-2 bg-white rounded-xl w-[150px] shadow-2xl">
+            <div class="flex flex-row items-center gap-2">
+                <div class="p-3 rounded-full bg-red-100">
+                    <svg class="w-4 h-4 text-red-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM288 176c0-44.2-35.8-80-80-80s-80 35.8-80 80c0 48.8 46.5 111.6 68.6 138.6c6 7.3 16.8 7.3 22.7 0c22.1-27 68.6-89.8 68.6-138.6zm-112 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
+                </div>
+                <div class="flex flex-col">
+                    <p class="text-black font-bold text-xl"><%= unemployed %></p>
+                    <p class="text-gray-500 font-semibold text-xs">Unemployed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- map  -->
+    <div data-employed="<%= employed %>" data-unemployed="<%= unemployed %>" data-allsubmissionscount="<%= allsubmissions %>" data-allsubmissions="<%= JSON.stringify(allsubmissionsdata) %>" data-allBarangays="<%= JSON.stringify(allBarangays) %>" data-barangay="<%= JSON.stringify(barangaystats) %>" id="map" class="w-full h-full rounded-tl-4xl z-5"></div>
+
+</div>

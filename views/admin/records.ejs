@@ -1,0 +1,99 @@
+<div class="flex flex-col p-4 gap-4 w-full h-full bg-blue-50 rounded-tl-4xl overflow-y-auto relative">
+    <div id="gallery" class="hidden z-50 inset-0 bg-black/50 backdrop-blur-xs overflow-auto items-center justify-center p-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10 p-10">
+            <div class="bg-white rounded-2xl p-1">
+                <img src="/capturedincident/incident_frame_4_2025-07-03T07-44-38-421Z.jpg" class="w-full h-auto rounded-2xl" alt="">
+            </div>
+            <div class="bg-white rounded-2xl p-1">
+                <img src="/capturedincident/incident_frame_4_2025-07-03T07-44-38-421Z.jpg" class="w-full h-auto rounded-2xl" alt="">
+            </div>
+            <div class="bg-white rounded-2xl p-1">
+                <img src="/capturedincident/incident_frame_4_2025-07-03T07-44-38-421Z.jpg" class="w-full h-auto rounded-2xl" alt="">
+            </div>
+            <div class="bg-white rounded-2xl p-1">
+                <img src="/capturedincident/incident_frame_4_2025-07-03T07-44-38-421Z.jpg" class="w-full h-auto rounded-2xl" alt="">
+            </div>
+            <div class="bg-white rounded-2xl p-1">
+                <img src="/capturedincident/incident_frame_4_2025-07-03T07-44-38-421Z.jpg" class="w-full h-auto rounded-2xl" alt="">
+            </div>
+        </div>
+        <div id="closePreviewBTN" class="absolute top-5 right-5 bg-gray-100/50 p-2 rounded-full">
+            <svg class="w-5 h-5 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+        </div>
+
+        <div class="px-10">
+            <div id="logDetails" class="bg-white w-full h-auto mt-4 p-4 rounded-lg shadow-md">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+        
+
+    </div>
+
+
+
+    <div class="w-full h-fit bg-white border border-gray-200 rounded-2xl shadow-sm p-4 md:p-6">
+        <p class="text-sm font-medium text-black mb-2">Image Processing Acitivity</p>
+        <div class="flex flex-row gap-4 items-center">
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button"><span id="selectedDropdownTXT">Filter </span><svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg>
+            </button>
+            <button class="text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" onclick="downloadExcel()">Download Data</button>
+        </div>
+       
+        <!-- Dropdown menu -->
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+            <ul id="dropdownList" class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Today</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 7 Days</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 30 Days</a>
+            </li>
+            <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">All Time</a>
+            </li>
+            </ul>
+        </div>
+        <div data-accident_logs="<%= JSON.stringify(accident_logs || {}) %>" id="area-chart-flexible" class="h-[300px]"></div>
+    </div>
+
+    <% accident_logs.forEach(log => { %>
+        <a data-logdata='<%- JSON.stringify(log).replace(/'/g, '&#39;') %>' href="#" class="log-entry">
+            <div class="flex flex-row gap-2 w-full border-b border-gray-200 pb-3">
+                <img src="/capturedincident/<%= log.json_string_data.detectedFrames[0].imageFile %>" alt="" class="w-30 h-auto rounded-sm">
+                <div class="flex flex-col gap-1 w-full items-start justify-center">
+                    <div class="flex flex-col gap-1">
+                        <% if (log.json_string_data && log.json_string_data.detectedFrames && log.json_string_data.detectedFrames.length > 0) { %>
+                            <% const firstFrame = log.json_string_data.detectedFrames[0]; %>
+                            <% if (firstFrame.incidents && firstFrame.incidents.length > 0) { %>
+                                <div class="flex flex-row gap-1 w-fit">
+                                    <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-sm w-fit">
+                                        <%= firstFrame.incidents[0].confidence %>%
+                                    </span>
+                                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-sm w-fit">
+                                        <%= firstFrame.incidents[0].type %>
+                                    </span>
+                                </div>
+                                <p class="text-xs font-normal text-gray-500 ml-2 w-fit"><%= firstFrame.incidents[0].description %></p>
+                                <div class="flex flex-row gap-1 ml-2 mt-2 items-center">
+                                    <svg class="w-3 h-3 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+                                    <p class="text-xs font-normal text-gray-500"><%= log.date_added %></p>
+                                </div>
+                            <% } else { %>
+                                <span class="text-xs text-gray-400">No incidents</span>
+                            <% } %>
+                        <% } else { %>
+                            <span class="text-xs text-gray-400">No detected frames</span>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </a>
+    <% }) %>
+    
+</div>
