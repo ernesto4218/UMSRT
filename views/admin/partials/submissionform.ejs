@@ -253,9 +253,9 @@
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                formsubmittedcontainer.classList.remove('hidden');
-                formsubmittedcontainer.classList.add('flex');
-                
+                form.classList.remove('hidden');
+                form.classList.add('flex');
+
                 showToast('success', "Application submitted"); 
                 formsubmittedcontainer.classList.remove('hidden');
                 formsubmittedcontainer.classList.add('flex');
