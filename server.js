@@ -303,9 +303,16 @@ async function verifyAuth(req, res, next) {
     '/api/submitform'
   ];
 
+  
+
   const normalize = path => path.replace(/\/+$/, '');
   const fullPath = normalize(req.baseUrl + req.path);
   console.log("Full Path:", fullPath);
+
+  if (fullPath.includes('/api') || excludedPaths.some(path => fullPath.startsWith(normalize(path)))) {
+    return next();
+  }
+
 
   // Skip auth for excluded paths
   if (excludedPaths.some(path => fullPath.startsWith(normalize(path)))) {
