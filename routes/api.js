@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
 
     res.cookie('auth_token', token, {
       httpOnly: true,      // Prevents JS access to cookie (good for security)
-      secure: process.env.NODE_ENV === 'production',  // Only send cookie over HTTPS in production
+      secure: process.env.NODE_ENV === 'production', 
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
       sameSite: 'lax'      // Adjust based on your cross-site cookie policy
     });

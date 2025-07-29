@@ -175,11 +175,17 @@
             </button>
         </div>
     </form>
+
+    <div id="formsubmittedcontainer" class="hidden p-5 md:w-[50%] h-full bg-white rounded-2xl">
+        <p class="text-black font-bold text-2xl">Thank you for your sumission!</p>
+        <p class="text-black font-semibold text-sm">You will be redirected to the login page shortly.</p>
+    </div>
 </div>
 
 <script>
     const birthInput = document.getElementById('date_of_birth');
     const ageInput = document.getElementById('age');
+    const formsubmittedcontainer = document.getElementById('formsubmittedcontainer');
 
     birthInput.addEventListener('change', () => {
         const birthDate = new Date(birthInput.value);
@@ -247,8 +253,16 @@
         .then(res => res.json())
         .then(data => {
             if (data.success) {
+                formsubmittedcontainer.classList.remove('hidden');
+                formsubmittedcontainer.classList.add('flex');
+                
                 showToast('success', "Application submitted"); 
-                location.replace('/users/login');
+                formsubmittedcontainer.classList.remove('hidden');
+                formsubmittedcontainer.classList.add('flex');
+
+                setTimeout(() => {
+                    location.replace('/users/login');
+                }, 1000);
             } else {
                 showToast('error', data.message);
             }

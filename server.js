@@ -262,14 +262,27 @@ app.get('/', async (req, res) => {
 
 //logout
 app.get('/users/logout', (req, res) => {
-  res.clearCookie('authToken');
+  res.clearCookie('auth_token', {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    path: '/', 
+  });
+
   res.redirect('/users/login');
+
 });
 
 app.get('/admin/logout', (req, res) => {
-  res.clearCookie('authToken');
+  res.clearCookie('auth_token', {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    path: '/', 
+  });
   res.redirect('/admin/login');
 });
+
 
 app.use('/api', apiRouter);
 app.use('/admin', adminRouter);
@@ -279,8 +292,7 @@ app.use('/cdn/', express.static(path.join(__dirname, 'node_modules/')));
 app.use('/capturedincident/', express.static(path.join(__dirname, 'captured_incident/')));
 
 async function verifyAuth(req, res, next) {
-    // Paths to exclude from auth middleware
-    const excludedPaths = [
+  const excludedPaths = [
     '/home',
     '/admin/login',
     '/createacc',
@@ -289,85 +301,56 @@ async function verifyAuth(req, res, next) {
     '/users/login',
     '/form',
     '/api/submitform'
-
   ];
 
-  // Helper to remove trailing slashes
   const normalize = path => path.replace(/\/+$/, '');
+  const fullPath = normalize(req.baseUrl + req.path);
+  console.log("Full Path:", fullPath);
 
-  const cleanPath = normalize(req.path);
-
-  // Match if the path starts with any excluded path
-  if (excludedPaths.some(path => cleanPath.startsWith(normalize(path)))) {
+  // Skip auth for excluded paths
+  if (excludedPaths.some(path => fullPath.startsWith(normalize(path)))) {
     return next();
   }
 
-
   const token = req.cookies?.auth_token;
+  console.log("Token:", token);
 
   if (!token) {
-    if (req.method === 'POST' || req.xhr || req.headers.accept?.includes('application/json')) {
-      return res.status(401).json({ message: 'Not authenticated' });
-    }
+    console.log("No token found.");
+    return respondUnauthorized(req, res);
+  }
 
-    console.log('no token');
+  let verify = await VERIFY_AUTH_USER(token);
+  let isAdmin = false;
+  console.log("Verify (User):", verify);
+
+  if (!verify) {
+    verify = await VERIFY_AUTH(token);
+    isAdmin = !!verify;
+    console.log("Verify (Admin):", verify);
+  }
+
+  if (!verify || !verify.id) {
+    return respondUnauthorized(req, res);
+  }
+
+  // If requesting an /admin path, only allow if verified as admin
+  if (req.path.includes('/admin') && !isAdmin) {
+    console.log("Access denied: user tried to access admin page.");
     return res.redirect('/home');
   }
 
-  if (req.path.startsWith('/users/')) {
-    const verify = await VERIFY_AUTH_USER(token);
-    if (!verify || !verify.id) {
-      if (req.method === 'POST' || req.xhr || req.headers.accept?.includes('application/json')) {
-        return res.status(401).json({ message: 'Invalid authentication' });
-      }
-      return res.redirect('/users/login');
-    }
-
-    req.user_id = verify.id;
-    console.log("Verified ID: ", req.user_id);
-    console.log("Logged in as user");
-
-    next();
-  } else if (req.path.startsWith('/admin/')) {
-    const verify = await VERIFY_AUTH(token);
-
-    if (!verify || !verify.id) {
-      if (req.method === 'POST' || req.xhr || req.headers.accept?.includes('application/json')) {
-        return res.status(401).json({ message: 'Invalid authentication' });
-      }
-      return res.redirect('/admin/login');
-    }
-
-    req.user_id = verify.id;
-    console.log("Verified ID: ", req.user_id);
-    console.log("Logged in as admin");
-
-    next();
-  } else if (req.path.startsWith('/api/')) {
-      let verify = await VERIFY_AUTH(token);
-
-      if (!verify || !verify.id) {
-        // Try verifying as a regular user
-        verify = await VERIFY_AUTH_USER(token);
-
-        if (!verify || !verify.id) {
-          return res.status(401).json({ message: 'Invalid authentication' });
-        }
-
-        console.log("Verified ID (as user): ", verify.id);
-        console.log("API request authenticated as USER");
-
-      } else {
-        console.log("Verified ID (as admin): ", verify.id);
-        console.log("API request authenticated as ADMIN");
-      }
-
-      req.user_id = verify.id;
-      return next();
-    } else {
-      return next();
-    }
+  req.user_id = verify.id;
+  next();
 }
+
+function respondUnauthorized(req, res) {
+  if (req.method === 'POST' || req.xhr || req.headers.accept?.includes('application/json')) {
+    return res.status(401).json({ message: 'Invalid authentication' });
+  }
+  return res.redirect('/home');
+}
+
 
 
 app.listen(port, () => {
