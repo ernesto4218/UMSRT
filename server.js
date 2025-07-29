@@ -287,7 +287,9 @@ async function verifyAuth(req, res, next) {
     '/login',
     '/api/login',
     '/users/login',
-    '/form'
+    '/form',
+    '/api/submitform'
+
   ];
 
   // Helper to remove trailing slashes
