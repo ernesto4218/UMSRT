@@ -83,15 +83,18 @@ personalinfoform.addEventListener('submit', async function(event) {
     const last_name = personalinfoform.querySelector('#last_name').value;
     const date_of_birth = personalinfoform.querySelector('#date_of_birth').value;
     const age = personalinfoform.querySelector('#age').value;
-    
+    const user_id = personalinfoform.querySelector('#user_id').value;
+
     const data = {
         first_name,
         middle_name,
         last_name,
         date_of_birth,
         age,
+        user_id
     };
 
+    console.log(data);
     try {
         const response = await fetch('/api/update-user-personal', {
             method: 'POST',
@@ -132,6 +135,8 @@ jobform.addEventListener('submit', async function(event) {
     const current_employment_2 = jobform.querySelector('#current_employment_2').value;
     const future_employment_1 = jobform.querySelector('#future_employment_1').value;
     const future_employment_2 = jobform.querySelector('#future_employment_2').value;
+    const user_id = jobform.querySelector('#user_id').value;
+
     
     const data = {
         previous_employment_1,
@@ -139,7 +144,8 @@ jobform.addEventListener('submit', async function(event) {
         current_employment_1,
         current_employment_2,
         future_employment_1,
-        future_employment_2
+        future_employment_2,
+        user_id
     };
 
     try {
@@ -180,12 +186,14 @@ educationform.addEventListener('submit', async function(event) {
     const high_school_education = educationform.querySelector('#high_school_education').value;
     const college_education = educationform.querySelector('#college_education').value;
     const course_taken = educationform.querySelector('#course_taken').value;
-   
+    const user_id = educationform.querySelector('#user_id').value;
+
     const data = {
         elementary_education,
         high_school_education,
         college_education,
         course_taken,
+        user_id
     };
 
     try {
@@ -224,10 +232,11 @@ accountform.addEventListener('submit', async function(event) {
 
     const email = accountform.querySelector('#email').value;
     const account_password = accountform.querySelector('#account_password').value;
-    
+    const user_id = accountform.querySelector('#user_id').value;
     const data = {
         email,
         account_password,
+        user_id
     };
 
     try {
@@ -260,3 +269,30 @@ accountform.addEventListener('submit', async function(event) {
         console.error('Submit error:', error);
     }
 });
+const dobInput = document.getElementById('date_of_birth');
+const ageInput = document.getElementById('age');
+
+function calculateAge() {
+    const dobValue = dobInput.value;
+
+    if (dobValue) {
+        const birthday = new Date(dobValue);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthday.getFullYear();
+
+        const monthDifference = today.getMonth() - birthday.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthday.getDate())) {
+            age--;
+        }
+
+        ageInput.value = age >= 0 ? age : '';
+    } else {
+        ageInput.value = '';
+    }
+}
+
+dobInput.addEventListener('change', calculateAge);
+dobInput.addEventListener('input', calculateAge);
+
+document.addEventListener('DOMContentLoaded', calculateAge);

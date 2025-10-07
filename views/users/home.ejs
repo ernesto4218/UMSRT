@@ -1,15 +1,15 @@
-<div class="bg-blue-100 w-screen h-screen overflow-y-auto items-center justify-center flex">
-    <div class="bg-white fixed top-0 w-full h-15 flex flex-row items-center justify-between">
+<div class="bg-blue-100 w-full h-full overflow-y-auto items-center flex flex-col">
+    <div class="bg-white w-full h-15 flex flex-row items-center justify-between z-10">
         <a href="" class="flex items-center space-x-3">
             <img src="/img/logo.jpg" class="bg-white rounded-full w-12 h-auto">
             <span class="self-center text-sm lg:text-2xl font-semibold whitespace-nowrap">UMSRT | </span>
             <span class="self-center text-xs lg:text-sm font-semibold whitespace-nowrap">User Account</span>
         </a>
         <a href="/users/logout">
-            <button type="button" class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Log out</button>
+            <button type="button" class="py-1.5 px-3 me-1 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-emerald-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Log out</button>
         </a>
     </div>
-    <div class="p-5 w-[95%] lg:!w-[80%] mt-20">
+    <div class="p-5 w-[95%] lg:!w-[80%]">
         <div class="w-full overflow-y-auto p-4 rounded-2xl shadow-2xl bg-white flex flex-col lg:flex-row">
             <div class="border-b border-gray-300 lg:!border-b-0 lg:border-r lg:border-gray-300 lg:w-[30%]">
                 <div class=" flex flex-col">
@@ -46,32 +46,34 @@
                 <div class="lg:w-[50%]">
                     <form id="personalinfoform" class="hidden w-full mt-5 h-full">
                         <p class="text-sm font-semibold text-black">Personal Information</p>
+                        <input value="<%= userdata.id %>" type="number" id="user_id" name="user_id" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 w-full p-2.5" required />
                         <div class="h-full flex flex-col justify-between">
                             <div class="flex flex-col h-auto">
                                 <div class="flex flex-col gap-4 mt-2">
                                     <div class="w-full">
                                         <label for="first_name" class="block mb-2 text-xs font-medium text-gray-900">First name</label>
-                                        <input value="<%= userdata.form_data.data.first_name %>" type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Juan" required />
+                                        <input value="<%= userdata.form_data.data.first_name %>" type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Juan" required />
                                     </div>
                                     <div class="w-full">
                                         <label for="middle_name" class="block mb-2 text-xs font-medium text-gray-900">Middle name</label>
-                                        <input value="<%= userdata.form_data.data.middle_name %>" type="text" id="middle_name" name="middle_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Dela" required />
+                                        <input value="<%= userdata.form_data.data.middle_name %>" type="text" id="middle_name" name="middle_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Dela" required />
                                     </div>
                                     <div class="w-full">
                                         <label for="last_name" class="block mb-2 text-xs font-medium text-gray-900">Last name</label>
-                                        <input value="<%= userdata.form_data.data.last_name %>" type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Cruz" required />
+                                        <input value="<%= userdata.form_data.data.last_name %>" type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Cruz" required />
                                     </div>
                                 </div>
                                 <div class="flex flex-row gap-4 mt-2">
                                     <div class="w-full">
                                         <label for="date_of_birth" class="block mb-2 text-xs font-medium text-gray-900">Date of Birth</label>
-                                        <input value="<%= userdata.form_data.data.date_of_birth %>" type="date" id="date_of_birth" name="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="MM/DD/YYYY" required />
+                                        <input value="<%= userdata.form_data.data.date_of_birth %>" type="date" id="date_of_birth" name="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="MM/DD/YYYY" required />
                                     </div>
                                     <div class="w-full">
                                         <label for="age" class="block mb-2 text-xs font-medium text-gray-900">Age</label>
-                                        <input value="<%= userdata.form_data.data.age %>" type="text" id="age" name="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., 30" required readonly />
+                                        <input value="<%= userdata.form_data.data.age %>" type="text" id="age" name="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., 30" required readonly />
                                     </div>
                                 </div>
+
 
                                 <div class="mt-2 w-full">
                                     <label for="barangay" class="block mb-2 text-xs font-medium text-gray-900">Barangay</label>
@@ -86,7 +88,7 @@
                                     ]; %>
 
                                     <select id="barangay" name="barangay"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5"
                                         required>
                                         <option value="">Choose your Barangay</option>
                                         <% barangays.forEach(function(b) { %>
@@ -97,7 +99,7 @@
                                 </div>
                             </div>
             
-                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 focus:outline-none">
+                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-emerald-700 rounded-lg focus:ring-4 focus:ring-emerald-300 hover:bg-emerald-800 focus:outline-none">
                                 <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm0 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 224c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
                                 Update
                             </button>
@@ -106,44 +108,45 @@
 
                     <form id="jobform" class="hidden w-full mt-5">
                         <p class="text-sm font-semibold text-black">Job History and Career Plans</p>
+                        <input value="<%= userdata.id %>" type="number" id="user_id" name="user_id" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 w-full p-2.5" required />
                         <p class="text-sm text-gray-700 font-normal mb-4">Leave empty if no job history or currently unemployed.</p>
                         <div class="h-full flex flex-col">
                             <div class="flex flex-col h-auto">
                                 <div class="flex flex-col gap-4 mb-2">
                                     <div class="w-full">
                                         <label for="previous_employment_1" class="block mb-2 text-xs font-medium text-gray-900">Previous Employment 1</label>
-                                        <input value="<%= userdata.form_data.data.previous_employment_1 %>" type="text" id="previous_employment_1" name="previous_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Company Name, Position" />
+                                        <input value="<%= userdata.form_data.data.previous_employment_1 %>" type="text" id="previous_employment_1" name="previous_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Company Name, Position" />
                                     </div>
                                     <div class="w-full">
                                         <label for="previous_employment_2" class="block mb-2 text-xs font-medium text-gray-900">Previous Employment 2</label>
-                                        <input value="<%= userdata.form_data.data.previous_employment_2 %>" type="text" id="previous_employment_2" name="previous_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Optional: Company Name, Position" />
+                                        <input value="<%= userdata.form_data.data.previous_employment_2 %>" type="text" id="previous_employment_2" name="previous_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="Optional: Company Name, Position" />
                                     </div>
                                 </div>
 
                                 <div class="flex flex-col gap-4 mt-2 mb-2">
                                     <div class="w-full">
                                         <label for="current_employment_1" class="block mb-2 text-xs font-medium text-gray-900">Current Employment 1</label>
-                                        <input value="<%= userdata.form_data.data.current_employment_1 %>" type="text" id="current_employment_1" name="current_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Current Company, Position" />
+                                        <input value="<%= userdata.form_data.data.current_employment_1 %>" type="text" id="current_employment_1" name="current_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Current Company, Position" />
                                     </div>
                                     <div class="w-full">
                                         <label for="current_employment_2" class="block mb-2 text-xs font-medium text-gray-900">Current Employment 2</label>
-                                        <input value="<%= userdata.form_data.data.current_employment_2 %>" type="text" id="current_employment_2" name="current_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Optional: Current Company, Position" />
+                                        <input value="<%= userdata.form_data.data.current_employment_2 %>" type="text" id="current_employment_2" name="current_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="Optional: Current Company, Position" />
                                     </div>
                                 </div>
 
                                 <div class="flex flex-col gap-4 mt-2 mb-2">
                                     <div class="w-full">
                                         <label for="future_employment_1" class="block mb-2 text-xs font-medium text-gray-900">Future Employment 1</label>
-                                        <input value="<%= userdata.form_data.data.future_employment_1 %>" type="text" id="future_employment_1" name="future_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Desired Role, Industry" />
+                                        <input value="<%= userdata.form_data.data.future_employment_1 %>" type="text" id="future_employment_1" name="future_employment_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Desired Role, Industry" />
                                     </div>
                                     <div class="w-full">
                                         <label for="future_employment_2" class="block mb-2 text-xs font-medium text-gray-900">Future Employment 2</label>
-                                        <input value="<%= userdata.form_data.data.future_employment_2 %>" type="text" id="future_employment_2" name="future_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Optional: Another desired role" />
+                                        <input value="<%= userdata.form_data.data.future_employment_2 %>" type="text" id="future_employment_2" name="future_employment_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="Optional: Another desired role" />
                                     </div>
                                 </div>
                             </div>
             
-                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 focus:outline-none">
+                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-emerald-700 rounded-lg focus:ring-4 focus:ring-emerald-300 hover:bg-emerald-800 focus:outline-none">
                                 <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm0 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 224c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
                                 Update
                             </button>
@@ -152,27 +155,28 @@
 
                     <form id="educationform" class="hidden w-full mt-5">
                         <p class="text-sm font-semibold text-black mb-4">Education</p>
+                        <input value="<%= userdata.id %>" type="number" id="user_id" name="user_id" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 w-full p-2.5" required />
                         <div class="h-full flex flex-col">
                             <div class="flex flex-col h-auto">
                                 <div class="w-full">
                                     <label for="elementary_education" class="block mb-2 text-xs font-medium text-gray-900">Elementary</label>
-                                    <input type="text" value="<%= userdata.form_data.data.elementary_education %>" id="elementary_education" name="elementary_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
+                                    <input type="text" value="<%= userdata.form_data.data.elementary_education %>" id="elementary_education" name="elementary_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
                                 </div>
                                 <div class="w-full mt-4">
                                     <label for="high_school_education" class="block mb-2 text-xs font-medium text-gray-900">High School</label>
-                                    <input type="text" value="<%= userdata.form_data.data.high_school_education %>" id="high_school_education" name="high_school_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
+                                    <input type="text" value="<%= userdata.form_data.data.high_school_education %>" id="high_school_education" name="high_school_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
                                 </div>
                                 <div class="w-full mt-4">
                                     <label for="college_education" class="block mb-2 text-xs font-medium text-gray-900">College</label>
-                                    <input type="text" value="<%= userdata.form_data.data.college_education %>" id="college_education" name="college_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., University Name, Year Graduated" required />
+                                    <input type="text" value="<%= userdata.form_data.data.college_education %>" id="college_education" name="college_education" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., University Name, Year Graduated" required />
                                 </div>
                                 <div class="w-full mt-4">
                                     <label for="course_taken" class="block mb-2 text-xs font-medium text-gray-900">Course</label>
-                                    <input type="text" value="<%= userdata.form_data.data.course_taken %>" id="course_taken" name="course_taken" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., Bachelor of Science in IT" required />
+                                    <input type="text" value="<%= userdata.form_data.data.course_taken %>" id="course_taken" name="course_taken" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., Bachelor of Science in IT" required />
                                 </div>
                             </div>
             
-                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 focus:outline-none">
+                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-emerald-700 rounded-lg focus:ring-4 focus:ring-emerald-300 hover:bg-emerald-800 focus:outline-none">
                                 <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm0 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 224c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
                                 Update
                             </button>
@@ -181,21 +185,22 @@
 
                     <form id="accountform" class="hidden w-full mt-5">
                         <p class="text-sm font-semibold text-black mb-4">Account Settings</p>
+                        <input value="<%= userdata.id %>" type="number" id="user_id" name="user_id" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 w-full p-2.5" required />
                         <div class="h-full flex flex-col">
                             <div class="flex flex-col h-auto">
                                 <div class="w-full">
                                     <label for="email" class="block mb-2 text-xs font-medium text-gray-900">Email</label>
-                                    <input readonly value="<%= userdata.form_data.data.email %>" type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
+                                    <input readonly value="<%= userdata.form_data.data.email %>" type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" placeholder="e.g., School Name, Year Graduated" required />
                                 </div>
                                 <div class="w-full mt-4">
                                     <label for="high_school_education" class="block mb-2 text-xs font-medium text-gray-900">New Password</label>
                                     <input type="password" id="account_password" name="account_password" 
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5" 
                                     placeholder="Enter at least 6 characters" required minlength="6" />
                                 </div>
                             </div>
             
-                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-300 hover:bg-blue-800 focus:outline-none">
+                            <button type="submit" class="self-end flex flex-row items-center justify-center gap-2 w-full mb-10 mt-8 px-5 py-2.5 text-sm font-medium text-white bg-emerald-700 rounded-lg focus:ring-4 focus:ring-emerald-300 hover:bg-emerald-800 focus:outline-none">
                                 <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm0 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 224c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
                                 Update
                             </button>

@@ -108,25 +108,26 @@ router.post('/login-user', async (req, res) => {
 });
 
 router.post('/update-user-personal', async (req, res) => {
-  const { first_name, middle_name, last_name, date_of_birth, age } = req.body;
+  const { first_name, middle_name, last_name, date_of_birth, age, user_id } = req.body;
   console.log(first_name);
   console.log(middle_name);
   console.log(last_name);
   console.log(date_of_birth);
   console.log(age);
-  console.log(req.user_id);
+  console.log(user_id);
 
   try {
-    const userdata = await GET_USER_BY_ID(req.user_id);
+    const userdata = await GET_USER_BY_ID(user_id);
     userdata.form_data = JSON.parse(userdata.form_data);
     userdata.form_data.data.first_name = first_name;
     userdata.form_data.data.middle_name = middle_name;
     userdata.form_data.data.last_name = last_name;
+    userdata.form_data.data.date_of_birth = date_of_birth;
     userdata.form_data.data.age = age;
 
     console.log(userdata);
 
-    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), req.user_id);
+    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
 
     res.status(200).json({ success: true, message: 'Update successful.' });
   } catch (error) {
@@ -136,18 +137,17 @@ router.post('/update-user-personal', async (req, res) => {
 });
 
 router.post('/update-user-job', async (req, res) => {
-  const { previous_employment_1, previous_employment_2, current_employment_1, current_employment_2, future_employment_1, future_employment_2 } = req.body;
+  const { previous_employment_1, previous_employment_2, current_employment_1, current_employment_2, future_employment_1, future_employment_2, user_id } = req.body;
   console.log(previous_employment_1);
   console.log(previous_employment_2);
   console.log(current_employment_1);
   console.log(current_employment_2);
   console.log(future_employment_1);
   console.log(future_employment_2);
-
-  console.log(req.user_id);
+  console.log(user_id);
 
   try {
-    const userdata = await GET_USER_BY_ID(req.user_id);
+    const userdata = await GET_USER_BY_ID(user_id);
     userdata.form_data = JSON.parse(userdata.form_data);
     userdata.form_data.data.previous_employment_1 = previous_employment_1;
     userdata.form_data.data.previous_employment_2 = previous_employment_1;
@@ -158,7 +158,7 @@ router.post('/update-user-job', async (req, res) => {
 
     console.log(userdata);
 
-    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), req.user_id);
+    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
 
     res.status(200).json({ success: true, message: 'Update successful.' });
   } catch (error) {
@@ -168,15 +168,15 @@ router.post('/update-user-job', async (req, res) => {
 });
 
 router.post('/update-user-education', async (req, res) => {
-  const { elementary_education, high_school_education, college_education, course_taken } = req.body;
+  const { elementary_education, high_school_education, college_education, course_taken, user_id } = req.body;
   console.log(elementary_education);
   console.log(high_school_education);
   console.log(college_education);
   console.log(course_taken);
-  console.log(req.user_id);
+  console.log(user_id);
 
   try {
-    const userdata = await GET_USER_BY_ID(req.user_id);
+    const userdata = await GET_USER_BY_ID(user_id);
     userdata.form_data = JSON.parse(userdata.form_data);
     userdata.form_data.data.elementary_education = elementary_education;
     userdata.form_data.data.high_school_education = high_school_education;
@@ -185,7 +185,7 @@ router.post('/update-user-education', async (req, res) => {
     
     console.log(userdata);
 
-    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), req.user_id);
+    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
 
     res.status(200).json({ success: true, message: 'Update successful.' });
   } catch (error) {
@@ -195,12 +195,12 @@ router.post('/update-user-education', async (req, res) => {
 });
 
 router.post('/update-user-account', async (req, res) => {
-  const { email, account_password } = req.body;
+  const { email, account_password, user_id } = req.body;
   console.log(email);
   console.log(account_password);
  
   try {
-    const userdata = await GET_USER_BY_ID(req.user_id);
+    const userdata = await GET_USER_BY_ID(user_id);
     userdata.form_data = JSON.parse(userdata.form_data);
     userdata.form_data.data.email = email;
     userdata.form_data.data.password = account_password;
@@ -208,8 +208,8 @@ router.post('/update-user-account', async (req, res) => {
 
     console.log(userdata);
 
-    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), req.user_id);
-    await UPDATE_USER_ACC_DATA(email, account_password, req.user_id);
+    await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
+    await UPDATE_USER_ACC_DATA(email, account_password, user_id);
 
     res.status(200).json({ success: true, message: 'Update successful.' });
   } catch (error) {
