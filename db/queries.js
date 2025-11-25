@@ -35,3 +35,8 @@ export const UPDATE_USER_ACC_DATA = 'UPDATE submissions SET email = ?, password 
 // api
 export const INSERT_SUBMISSION = 'INSERT INTO submissions (form_data, email, password) VALUES (?, ?, ?)';
 export const GET_ALL_SUBMISSIONS = 'SELECT * FROM submissions ORDER by id DESC';
+
+export const CHECK_SUBMISSION_EXISTED =   `SELECT * FROM submissions 
+   WHERE (LOWER(JSON_UNQUOTE(JSON_EXTRACT(form_data, '$.data.first_name'))) = LOWER(?)
+          AND LOWER(JSON_UNQUOTE(JSON_EXTRACT(form_data, '$.data.middle_name'))) = LOWER(?)
+          AND LOWER(JSON_UNQUOTE(JSON_EXTRACT(form_data, '$.data.last_name'))) = LOWER(?))`

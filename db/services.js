@@ -124,3 +124,9 @@ export async function GET_ALL_SUBMISSIONS() {
   const [rows] = await db.execute(queries.GET_ALL_SUBMISSIONS);
   return rows;
 }
+
+
+export async function CHECK_SUBMISSION_EXISTED(first_name, middle_name, last_name) {
+  const [rows] = await db.execute(queries.CHECK_SUBMISSION_EXISTED, [first_name, middle_name, last_name]);
+  return rows[0];
+}

@@ -6,7 +6,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import bcrypt from 'bcrypt'
 import { fileURLToPath } from 'url';
-import {GET_ALL_SUBMISSIONS, INSERT_SUBMISSION, EDIT_BARANGAY_BY_ID, GET_BY_EMAIL, GET_BY_EMAIL_USER, UPDATE_AUTH_TOKEN_USER, GET_USER_BY_ID, UPDATE_USER_FORM_DATA, UPDATE_USER_ACC_DATA, GET_FACEBOOK_CONFIG, INSERT_FACEBOOK_LOG } from '../db/services.js';
+import {GET_ALL_SUBMISSIONS, INSERT_SUBMISSION, EDIT_BARANGAY_BY_ID, GET_BY_EMAIL, GET_BY_EMAIL_USER, UPDATE_AUTH_TOKEN_USER, GET_USER_BY_ID, UPDATE_USER_FORM_DATA, UPDATE_USER_ACC_DATA, GET_FACEBOOK_CONFIG, INSERT_FACEBOOK_LOG, CHECK_SUBMISSION_EXISTED } from '../db/services.js';
 import { generateAuthToken, hashPassword, formatDate } from './helpers.js';
 import axios from 'axios';
 
@@ -49,14 +49,27 @@ router.post('/login', async (req, res) => {
 router.post('/submitform', async (req, res) => {
   const data = req.body; 
 
+  console.log(data);
   try {
     console.log('Received form data:', data);
     console.log('Received form email:', data.data.email);
     console.log('Received form password:', data.data.password);
 
+    const exists = await CHECK_SUBMISSION_EXISTED(data.data.first_name, data.data.middle_name, data.data.last_name);
 
-    await INSERT_SUBMISSION(data, data.data.email, data.data.password);
-    res.status(200).json({success: true, message: 'Form submitted successfully', data });
+    if (exists){
+      console.log(exists);
+      res.status(500).json({ message: 'Name already existed' });
+    } else {
+      const email_exists = await GET_BY_EMAIL_USER(data.data.email);
+      if (email_exists){
+        res.status(500).json({ message: 'Email already existed' });
+      } else {
+        await INSERT_SUBMISSION(data, data.data.email, data.data.password);
+        res.status(200).json({success: true, message: 'Form submitted successfully', data });
+      }
+      
+    }
   } catch (error) {
     console.error('error:', error);
     res.status(500).json({ message: 'Failed to handle form submission' });
@@ -285,6 +298,34 @@ router.post('/facebook-form', async (req, res) => {
     // console.log(post);
     await INSERT_FACEBOOK_LOG(config[0].message, 'Success');
     res.status(200).json({ success: true, message: 'Posted successful.' });
+  } catch (error) {
+    console.error('❌ Error posting to Facebook:', error.response?.data || error.message);
+    await INSERT_FACEBOOK_LOG(
+      typeof error.response?.data === 'string' 
+        ? error.response.data 
+        : error.message || "Failed to post.", 
+      'Failed'
+    );
+    res.status(500).json({ error: 'Server error.' });
+  }
+});
+
+router.post('/facebook-custom', async (req, res) => {
+  try {
+    const {message} = req.body;
+
+    if (message){
+      const post = await axios.post('https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0', {
+        message: message,
+      });
+
+      // console.log(post);
+      await INSERT_FACEBOOK_LOG(message, 'Success');
+      res.status(200).json({ success: true, message: 'Posted successful.' });
+    } else {
+          res.status(500).json({ message: 'No message to post.' });
+    }
+    
   } catch (error) {
     console.error('❌ Error posting to Facebook:', error.response?.data || error.message);
     await INSERT_FACEBOOK_LOG(

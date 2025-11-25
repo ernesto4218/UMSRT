@@ -173,6 +173,8 @@ app.get('/admin/facebook', async (req, res) => {
     post.date_added = formatDate(post.date_added);
   });
 
+  allposts.sort((a, b) => b.id - a.id);
+
   const data = {
     title: "Facebook posts",
     date: formatDate(new Date()),

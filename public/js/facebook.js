@@ -144,11 +144,13 @@ if (document.getElementById("search-table") && typeof simpleDatatables.DataTable
 
     const postnowresultsbtn = document.getElementById('postnowresultsbtn');
     postnowresultsbtn.onclick = async function() {
+        const message1 = document.getElementById('message1');
         const type = 'result';
         postnowresultsbtn.disabled = true;
         
         const data = {
             type,
+            message: message1
         };
 
         try {
@@ -198,6 +200,55 @@ if (document.getElementById("search-table") && typeof simpleDatatables.DataTable
 
         try {
             const response = await fetch('/api/facebook-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // ✅ correct for JSON
+                },
+                body: JSON.stringify(data) // ✅ convert JS object to JSON string
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                showToast('error', errorData.message || 'Unknown error');
+                console.error('Server error:', errorData);
+                return; 
+            }
+
+            const result = await response.json();
+            if (result){
+                if (result.success){
+                    showToast('success', result.message);
+                    setTimeout(() => {
+                        location.reload();            
+                    }, 500);
+                } else {
+                    showToast('error', result.message);
+                }
+            } else {
+                showToast('error', 'No result found.');
+            }
+            console.log('Server response:', result);
+        } catch (error) {
+            showToast('error', error.message);
+            console.error('Submit error:', error);
+        }
+    };
+
+    const postnowresultsbtncustom = document.getElementById('postnowresultsbtncustom');
+    postnowresultsbtncustom.onclick = async function() {
+        postnowpromobtn.disabled = true;
+        const custom_message = document.getElementById('custom_message');
+        const type = 'form';
+        
+        const data = {
+            type,
+            message: custom_message.value
+        };
+
+        console.log(data);
+
+        try {
+            const response = await fetch('/api/facebook-custom', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json' // ✅ correct for JSON
