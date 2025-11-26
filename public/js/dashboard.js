@@ -1083,7 +1083,9 @@ submittedbtn.onclick = function() {
         unemployedData.push(info.unemployed);
     });
 
-    const chartWidth = categories.length * 50;
+    const calculatedWidth = categories.length * 50;
+    const minWidth = 400; // set your minimum width here
+    const chartWidth = Math.max(calculatedWidth, minWidth);
 
     const options = {
         series: [
