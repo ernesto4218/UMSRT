@@ -605,6 +605,9 @@
   .w-\[300px\] {
     width: 300px;
   }
+  .w-\[2000px\] {
+    width: 2000px;
+  }
   .w-fit {
     width: fit-content;
   }
@@ -796,6 +799,9 @@
   }
   .overflow-y-auto {
     overflow-y: auto;
+  }
+  .overflow-y-hidden {
+    overflow-y: hidden;
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);

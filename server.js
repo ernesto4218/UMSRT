@@ -89,38 +89,45 @@ app.get('/admin/dashboard', async (req, res) => {
   const barangayStats = {};
   const submissionresult = {};
 
-  allsubmissions.forEach(submission => {
-    const formData = JSON.parse(submission.form_data);
-    const barangay = formData.data.barangay || 'Unknown';
-    const date = new Date(submission.date_added).toISOString().split('T')[0];
+allsubmissions.forEach(submission => {
+  const formData = JSON.parse(submission.form_data);
+  const barangayField = formData.data.barangay || 'Unknown';
+  const date = new Date(submission.date_added).toISOString().split('T')[0];
 
-    const employed = formData.data.current_employment_1?.trim() !== '' || formData.data.current_employment_2?.trim() !== '';
+  const employed = formData.data.current_employment_1?.trim() !== '' || formData.data.current_employment_2?.trim() !== '';
 
-    // Employment count
+  // Split multiple barangays by '/' and trim spaces
+  const barangays = barangayField.split('/').map(b => b.trim());
+
+  barangays.forEach(barangay => {
+    // --- Barangay employment stats ---
     if (!barangayStats[barangay]) {
       barangayStats[barangay] = { employed: 0, unemployed: 0 };
     }
     employed ? barangayStats[barangay].employed++ : barangayStats[barangay].unemployed++;
 
-    // Submission count
+    // --- Submission result ---
     if (!submissionresult[barangay]) {
       submissionresult[barangay] = {
         total: 0,
+        employed: 0,
+        unemployed: 0,
         byDate: {}
       };
     }
 
     submissionresult[barangay].total++;
+    employed ? submissionresult[barangay].employed++ : submissionresult[barangay].unemployed++;
 
     if (!submissionresult[barangay].byDate[date]) {
       submissionresult[barangay].byDate[date] = 0;
     }
-
     submissionresult[barangay].byDate[date]++;
   });
+});
 
 
-  // console.log(submissionresult);
+
 
   const allBarangays = await GET_ALL_BARANGAYS();
   allBarangays.forEach(barangay => {
@@ -130,6 +137,8 @@ app.get('/admin/dashboard', async (req, res) => {
     barangay.lng = Number(barangay.lng);
 
   });
+
+  console.log(submissionresult);
 
   const data = {
     title: "Dashboard",

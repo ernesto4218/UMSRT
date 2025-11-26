@@ -645,7 +645,7 @@ function createBarangaySvgIcon(fillColor = '#3388ff') {
 }
 
 allbarangay.forEach(b => {
-    // console.log(b);
+    console.log(b);
     const stats = barangayStats[b.name];
     if (stats) {
         b.employed = stats.employed;
@@ -1067,27 +1067,36 @@ submittedbtn.onclick = function() {
     submissionanalyticscontainer.classList.remove('hidden');
     submissionanalyticscontainer.classList.add('flex');
     submissionanalyticscontainer.querySelector('.submissioncount').textContent = mapElement.getAttribute('data-allsubmissionscount');
-    const data = [];
+
+    // Parse all submissions data
+    const allsubmissions = JSON.parse(mapElement.getAttribute('data-allsubmissions'));
+
+    const categories = [];
+    const employedData = [];
+    const unemployedData = [];
 
     Object.entries(allsubmissions)
     .sort(([a], [b]) => a.localeCompare(b)) // sort barangay names alphabetically
     .forEach(([barangay, info]) => {
-        const submit = {
-        x: barangay,
-        y: info.total
-        };
-        data.push(submit);
+        categories.push(barangay);
+        employedData.push(info.employed);
+        unemployedData.push(info.unemployed);
     });
 
-    const chartWidth = data.length * 50;
+    const chartWidth = categories.length * 50;
+
     const options = {
-        colors: ["#009966"],
         series: [
             {
-            name: "Submission",
-            color: "#1A56DB",
-            data: data,
+                name: "Employed",
+                data: employedData,
+                color: "#009966"
             },
+            {
+                name: "Unemployed",
+                data: unemployedData,
+                color: "#FF3333"
+            }
         ],
         chart: {
             type: "bar",
@@ -1098,77 +1107,45 @@ submittedbtn.onclick = function() {
         },
         plotOptions: {
             bar: {
-            horizontal: false,
-            columnWidth: "70%",
-            borderRadiusApplication: "end",
-            borderRadius: 8,
+                horizontal: false,
+                columnWidth: "50%",
+                borderRadiusApplication: "end",
+                borderRadius: 8,
+                stacked: true
             },
         },
         tooltip: {
             shared: true,
             intersect: false,
-            style: {
-            fontFamily: "Inter, sans-serif",
-            },
+            style: { fontFamily: "Inter, sans-serif" },
         },
-        states: {
-            hover: {
-            filter: {
-                type: "darken",
-                value: 1,
-            },
-            },
-        },
-        stroke: {
-            show: true,
-            width: 0,
-            colors: ["transparent"],
-        },
-        grid: {
-            show: false,
-            strokeDashArray: 4,
-            padding: {
-            left: 2,
-            right: 2,
-            top: -14
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        legend: {
-            show: false,
-        },
+        stroke: { show: true, width: 0, colors: ["transparent"] },
+        dataLabels: { enabled: false },
+        legend: { show: true },
         xaxis: {
+            categories: categories,
             floating: false,
             labels: {
-            show: true,
-            style: {
-                fontFamily: "Inter, sans-serif",
-                cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
-            }
+                show: true,
+                style: {
+                    fontFamily: "Inter, sans-serif",
+                    cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                }
             },
-            axisBorder: {
-            show: false,
-            },
-            axisTicks: {
-            show: false,
-            },
+            axisBorder: { show: false },
+            axisTicks: { show: false },
         },
-        yaxis: {
-            show: false,
-        },
-        fill: {
-            opacity: 1,
-        },
-    }
+        yaxis: { show: true },
+        fill: { opacity: 1 },
+    };
 
+    // Render chart in the same container
     if(document.getElementById("column-chart") && typeof ApexCharts !== 'undefined') {
-    const chart = new ApexCharts(document.getElementById("column-chart"), options);
-    chart.render();
+        const chart = new ApexCharts(document.getElementById("column-chart"), options);
+        chart.render();
     }
-
 };
+
 
 submissionanalyticscontainer.querySelector('.closesubmissionanalyticsbtn').onclick = function() {
     submissionanalyticscontainer.classList.remove('flex');
