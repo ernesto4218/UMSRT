@@ -611,6 +611,7 @@ const mapElement = document.getElementById('map');
 const allbarangay = JSON.parse(mapElement.getAttribute('data-allBarangays'));
 const allsubmissions = JSON.parse(mapElement.getAttribute('data-allsubmissions'));
 
+
 let barangayStats;
 let selected_barangay;
 console.log(allsubmissions);
@@ -1171,3 +1172,193 @@ cityBorderLine.on('click', function (e) {
 function getRandomColor() {
   return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
 }
+
+let chart2;
+
+function initializeBarangayChart() {
+    const chartElement = document.getElementById('column-chart2');
+    if (!chartElement) return;
+    
+    const allSubmissions = JSON.parse(mapElement.getAttribute('data-allsubmissionsResident'));
+    
+    function processSubmissionsByMonth(submissions, barangayFilter) {
+        // Group submissions by barangay and month
+        const monthlyData = {};
+        
+        submissions.forEach(submission => {
+            try {
+                const formData = JSON.parse(submission.form_data);
+                const barangay = formData.data.barangay;
+                
+                // Skip if filtering by barangay and doesn't match
+                if (barangayFilter !== 'all' && barangay !== barangayFilter) {
+                    return;
+                }
+                
+                // Get the date and format it as YYYY-MM
+                const dateAdded = new Date(submission.date_added);
+                const monthKey = `${dateAdded.getFullYear()}-${String(dateAdded.getMonth() + 1).padStart(2, '0')}`;
+                
+                // Check employment status
+                const currentEmployment1 = formData.data.current_employment_1 || '';
+                const currentEmployment2 = formData.data.current_employment_2 || '';
+                const isEmployed = currentEmployment1.trim() !== '' || currentEmployment2.trim() !== '';
+                
+                // Initialize the month if it doesn't exist
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = {
+                        total: 0,
+                        employed: 0,
+                        unemployed: 0
+                    };
+                }
+                
+                // Increment counters
+                monthlyData[monthKey].total++;
+                if (isEmployed) {
+                    monthlyData[monthKey].employed++;
+                } else {
+                    monthlyData[monthKey].unemployed++;
+                }
+            } catch (error) {
+                console.error('Error processing submission:', error);
+            }
+        });
+        
+        // Sort months chronologically
+        const sortedMonths = Object.keys(monthlyData).sort();
+        
+        return {
+            months: sortedMonths,
+            data: monthlyData
+        };
+    }
+    
+    function formatMonthLabel(monthKey) {
+        const [year, month] = monthKey.split('-');
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${monthNames[parseInt(month) - 1]} ${year}`;
+    }
+    
+    function renderChart(barangayFilter = 'all') {
+        // Process submissions by month
+        const { months, data } = processSubmissionsByMonth(allSubmissions, barangayFilter);
+        
+        // Prepare data for the chart
+        const categories = months.map(month => formatMonthLabel(month));
+        const totalData = months.map(month => data[month].total);
+        const employedData = months.map(month => data[month].employed);
+        const unemployedData = months.map(month => data[month].unemployed);
+        
+        const chartTitle = barangayFilter === 'all' 
+            ? 'Monthly Submissions - All Barangays' 
+            : `Monthly Submissions - ${barangayFilter}`;
+        
+        const options = {
+            series: [{
+                name: 'Total Submissions',
+                data: totalData
+            }, {
+                name: 'Employed',
+                data: employedData
+            }, {
+                name: 'Unemployed',
+                data: unemployedData
+            }],
+            chart: {
+                type: 'bar',
+                height: 400,
+                toolbar: {
+                    show: true
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                },
+            },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: '11px'
+                }
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            title: {
+                text: chartTitle,
+                align: 'left',
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold'
+                }
+            },
+            xaxis: {
+                categories: categories,
+                labels: {
+                    rotate: -45,
+                    rotateAlways: categories.length > 5,
+                    style: {
+                        fontSize: '12px'
+                    }
+                },
+                title: {
+                    text: 'Month'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Number of Submissions'
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + " submissions"
+                    }
+                }
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'left'
+            },
+            colors: ['#3b82f6', '#10b981', '#ef4444']
+        };
+        
+        // Destroy existing chart if it exists
+        if (chart2) {
+            chart2.destroy();
+        }
+        
+        // Render new chart
+        chart2 = new ApexCharts(chartElement, options);
+        chart2.render();
+    }
+    
+    // Initial render with all barangays
+    renderChart('all');
+    
+    // Add event listener to the select dropdown
+    const selectElement = document.getElementById('barangay-select');
+    if (selectElement) {
+        // Remove any existing listeners by cloning
+        const newSelectElement = selectElement.cloneNode(true);
+        selectElement.parentNode.replaceChild(newSelectElement, selectElement);
+        
+        // Add new listener
+        newSelectElement.addEventListener('change', function(e) {
+            const selectedBarangay = e.target.value;
+            renderChart(selectedBarangay);
+        });
+    }
+}
+
+initializeBarangayChart();

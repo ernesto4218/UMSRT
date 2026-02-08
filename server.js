@@ -74,6 +74,7 @@ app.get('/users/home', async (req, res) => {
 
 app.get('/admin/dashboard', async (req, res) => {
   const allsubmissions = await GET_ALL_SUBMISSIONS();
+  
   const countSubmissionsWithCurrentEmployment = allsubmissions.reduce((count, submission) => {
     const formData = JSON.parse(submission.form_data);
     const hasCurrentEmployment = formData.data.current_employment_1?.trim() !== '' || formData.data.current_employment_2?.trim() !== '';
@@ -89,45 +90,42 @@ app.get('/admin/dashboard', async (req, res) => {
   const barangayStats = {};
   const submissionresult = {};
 
-allsubmissions.forEach(submission => {
-  const formData = JSON.parse(submission.form_data);
-  const barangayField = formData.data.barangay || 'Unknown';
-  const date = new Date(submission.date_added).toISOString().split('T')[0];
+  allsubmissions.forEach(submission => {
+    const formData = JSON.parse(submission.form_data);
+    const barangayField = formData.data.barangay || 'Unknown';
+    const date = new Date(submission.date_added).toISOString().split('T')[0];
 
-  const employed = formData.data.current_employment_1?.trim() !== '' || formData.data.current_employment_2?.trim() !== '';
+    const employed = formData.data.current_employment_1?.trim() !== '' || formData.data.current_employment_2?.trim() !== '';
 
-  // Split multiple barangays by '/' and trim spaces
-  const barangays = barangayField.split('/').map(b => b.trim());
+    // Split multiple barangays by '/' and trim spaces
+    const barangays = barangayField.split('/').map(b => b.trim());
 
-  barangays.forEach(barangay => {
-    // --- Barangay employment stats ---
-    if (!barangayStats[barangay]) {
-      barangayStats[barangay] = { employed: 0, unemployed: 0 };
-    }
-    employed ? barangayStats[barangay].employed++ : barangayStats[barangay].unemployed++;
+    barangays.forEach(barangay => {
+      // --- Barangay employment stats ---
+      if (!barangayStats[barangay]) {
+        barangayStats[barangay] = { employed: 0, unemployed: 0 };
+      }
+      employed ? barangayStats[barangay].employed++ : barangayStats[barangay].unemployed++;
 
-    // --- Submission result ---
-    if (!submissionresult[barangay]) {
-      submissionresult[barangay] = {
-        total: 0,
-        employed: 0,
-        unemployed: 0,
-        byDate: {}
-      };
-    }
+      // --- Submission result ---
+      if (!submissionresult[barangay]) {
+        submissionresult[barangay] = {
+          total: 0,
+          employed: 0,
+          unemployed: 0,
+          byDate: {}
+        };
+      }
 
-    submissionresult[barangay].total++;
-    employed ? submissionresult[barangay].employed++ : submissionresult[barangay].unemployed++;
+      submissionresult[barangay].total++;
+      employed ? submissionresult[barangay].employed++ : submissionresult[barangay].unemployed++;
 
-    if (!submissionresult[barangay].byDate[date]) {
-      submissionresult[barangay].byDate[date] = 0;
-    }
-    submissionresult[barangay].byDate[date]++;
+      if (!submissionresult[barangay].byDate[date]) {
+        submissionresult[barangay].byDate[date] = 0;
+      }
+      submissionresult[barangay].byDate[date]++;
+    });
   });
-});
-
-
-
 
   const allBarangays = await GET_ALL_BARANGAYS();
   allBarangays.forEach(barangay => {
@@ -148,10 +146,11 @@ allsubmissions.forEach(submission => {
     unemployed: countSubmissionsWithNoCurrentEmployment.toLocaleString(),
     barangaystats: barangayStats,
     allBarangays: allBarangays,
-    allsubmissionsdata: submissionresult
+    allsubmissionsdata: submissionresult,
+    allsubmissionsResident: allsubmissions,
   }
 
-  // console.log(data);
+  console.log(allsubmissions);
   res.render('admin/dashboard', data);
 });
 

@@ -1,6 +1,6 @@
 <div id="submissionanalyticscontainer" class="hidden flex-col">
     <div class="fixed z-50 w-screen h-screen flex items-center justify-center">
-        <div class="w-[80%] h-auto bg-white rounded-2xl flex flex-col">
+        <div class="w-[80%] h-[70%] overflow-y-auto bg-white rounded-2xl flex flex-col">
 
             <div class="flex justify-between p-4">
                 <div>
@@ -14,12 +14,28 @@
                 </div>
             </div>
             
-            <div class="flex flex-row">
+            <div class="flex flex-row overflow-y-auto h-[300px]">
 
                 <div class="w-full bg-white rounded-lg shadow-sm md:p-6">
                     <div class="overflow-x-auto w-full p-5 overflow-y-hidden">
                         <div id="column-chart" class="w-full overflow-x-auto overflow-y-hidden"></div>
                     </div>
+
+                    <form class="w-fit self-start px-5">
+                        <label for="barangay-select" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select barangay</label>
+                        <select id="barangay-select" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="all">All Barangays</option>
+                            <% allBarangays.forEach(barangay => { %>
+                                <option value="<%= barangay.name %>"><%= barangay.name %></option>
+                            <% }) %>
+                        </select>
+                    </form>
+
+                    <div class="overflow-x-auto w-full p-5 overflow-y-hidden">
+                        <div id="column-chart2"  class="w-full overflow-x-auto overflow-y-hidden"></div>
+                    </div>
+
+
                 </div>
             </div>
 
