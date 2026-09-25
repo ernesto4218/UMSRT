@@ -1,22 +1,42 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
-import express from 'express';
-import fs from 'fs/promises';
-import path from 'path';
-import bcrypt from 'bcrypt'
-import { fileURLToPath } from 'url';
-import {GET_ALL_SUBMISSIONS, INSERT_SUBMISSION, EDIT_BARANGAY_BY_ID, GET_BY_EMAIL, GET_BY_EMAIL_USER, UPDATE_AUTH_TOKEN_USER, GET_USER_BY_ID, UPDATE_USER_FORM_DATA, UPDATE_USER_ACC_DATA, GET_FACEBOOK_CONFIG, INSERT_FACEBOOK_LOG, CHECK_SUBMISSION_EXISTED } from '../db/services.js';
-import { generateAuthToken, hashPassword, formatDate } from './helpers.js';
-import axios from 'axios';
+import express from "express";
+import fs from "fs/promises";
+import path from "path";
+import bcrypt from "bcrypt";
+import { fileURLToPath } from "url";
+import {
+  GET_ALL_SUBMISSIONS,
+  INSERT_SUBMISSION,
+  EDIT_BARANGAY_BY_ID,
+  GET_BY_EMAIL,
+  GET_BY_EMAIL_USER,
+  UPDATE_AUTH_TOKEN_USER,
+  GET_USER_BY_ID,
+  UPDATE_USER_FORM_DATA,
+  UPDATE_USER_ACC_DATA,
+  GET_FACEBOOK_CONFIG,
+  INSERT_FACEBOOK_LOG,
+  CHECK_SUBMISSION_EXISTED,
+  GET_EMPLOYER_BY_EMAIL,
+  CREATE_EMPLOYER,
+  UPDATE_AUTH_TOKEN_EMPLOYER,
+} from "../db/services.js";
+import {
+  generateAuthToken,
+  hashPassword,
+  formatDate,
+  comparePassword,
+} from "./helpers.js";
+import axios from "axios";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
-
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   console.log(email);
   console.log(password);
@@ -25,72 +45,88 @@ router.post('/login', async (req, res) => {
     const acc = await GET_BY_EMAIL(email);
     console.log(acc);
     if (!acc || !(await bcrypt.compare(password, acc.password))) {
-      return res.status(401).json({ message: 'Invalid email or password.' });
+      return res.status(401).json({ message: "Invalid email or password." });
     }
 
     const token = await generateAuthToken();
     await UPDATE_AUTH_TOKEN(token, acc.id);
 
-    res.cookie('auth_token', token, {
-      httpOnly: true,      // Prevents JS access to cookie (good for security)
-      secure: process.env.NODE_ENV === 'production', 
+    res.cookie("auth_token", token, {
+      httpOnly: true, // Prevents JS access to cookie (good for security)
+      secure: process.env.NODE_ENV === "production",
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-      sameSite: 'lax'      // Adjust based on your cross-site cookie policy
+      sameSite: "lax", // Adjust based on your cross-site cookie policy
     });
-    
-    res.status(200).json({ success: true, token, message: 'Login successful.' });
+
+    res
+      .status(200)
+      .json({ success: true, token, message: "Login successful." });
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error during login.' });
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Server error during login." });
   }
 });
 
-
-router.post('/submitform', async (req, res) => {
-  const data = req.body; 
+router.post("/submitform", async (req, res) => {
+  const data = req.body;
 
   console.log(data);
   try {
-    console.log('Received form data:', data);
-    console.log('Received form email:', data.data.email);
-    console.log('Received form password:', data.data.password);
+    console.log("Received form data:", data);
+    console.log("Received form email:", data.data.email);
+    console.log("Received form password:", data.data.password);
 
-    const exists = await CHECK_SUBMISSION_EXISTED(data.data.first_name, data.data.middle_name, data.data.last_name);
+    const exists = await CHECK_SUBMISSION_EXISTED(
+      data.data.first_name,
+      data.data.middle_name,
+      data.data.last_name,
+    );
 
-    if (exists){
+    if (exists) {
       console.log(exists);
-      res.status(500).json({ message: 'Name already existed' });
+      res.status(500).json({ message: "Name already existed" });
     } else {
       const email_exists = await GET_BY_EMAIL_USER(data.data.email);
-      if (email_exists){
-        res.status(500).json({ message: 'Email already existed' });
+      if (email_exists) {
+        res.status(500).json({ message: "Email already existed" });
       } else {
         await INSERT_SUBMISSION(data, data.data.email, data.data.password);
-        res.status(200).json({success: true, message: 'Form submitted successfully', data });
+        res.status(200).json({
+          success: true,
+          message: "Form submitted successfully",
+          data,
+        });
       }
-      
     }
   } catch (error) {
-    console.error('error:', error);
-    res.status(500).json({ message: 'Failed to handle form submission' });
+    console.error("error:", error);
+    res.status(500).json({ message: "Failed to handle form submission" });
   }
 });
 
-router.post('/edit-barangay', async (req, res) => {
-  const formdata = req.body; 
+router.post("/edit-barangay", async (req, res) => {
+  const formdata = req.body;
   const data = formdata.data;
   console.log(data);
-  
+
   try {
-    await EDIT_BARANGAY_BY_ID(data.name, data.latitude, data.longitude, data.population, data.id);
-    res.status(200).json({success: true, message: 'Barangay edited successfully'});
+    await EDIT_BARANGAY_BY_ID(
+      data.name,
+      data.latitude,
+      data.longitude,
+      data.population,
+      data.id,
+    );
+    res
+      .status(200)
+      .json({ success: true, message: "Barangay edited successfully" });
   } catch (error) {
-    console.error('error:', error);
-    res.status(500).json({ message: 'Failed to handle form submission' });
+    console.error("error:", error);
+    res.status(500).json({ message: "Failed to handle form submission" });
   }
 });
 
-router.post('/login-user', async (req, res) => {
+router.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
   console.log(email);
   console.log(password);
@@ -99,29 +135,32 @@ router.post('/login-user', async (req, res) => {
     const acc = await GET_BY_EMAIL_USER(email);
     console.log(acc);
 
-    if (password !== acc.password){
-      return res.status(401).json({ message: 'Invalid email or password.' });
+    if (password !== acc.password) {
+      return res.status(401).json({ message: "Invalid email or password." });
     }
-    
+
     const token = await generateAuthToken();
     await UPDATE_AUTH_TOKEN_USER(token, acc.id);
 
-    res.cookie('auth_token', token, {
-      httpOnly: true,      // Prevents JS access to cookie (good for security)
-      secure: process.env.NODE_ENV === 'production',  // Only send cookie over HTTPS in production
+    res.cookie("auth_token", token, {
+      httpOnly: true, // Prevents JS access to cookie (good for security)
+      secure: process.env.NODE_ENV === "production", // Only send cookie over HTTPS in production
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-      sameSite: 'lax'      // Adjust based on your cross-site cookie policy
+      sameSite: "lax", // Adjust based on your cross-site cookie policy
     });
-    
-    res.status(200).json({ success: true, token, message: 'Login successful.' });
+
+    res
+      .status(200)
+      .json({ success: true, token, message: "Login successful." });
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error during login.' });
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Server error during login." });
   }
 });
 
-router.post('/update-user-personal', async (req, res) => {
-  const { first_name, middle_name, last_name, date_of_birth, age, user_id } = req.body;
+router.post("/update-user-personal", async (req, res) => {
+  const { first_name, middle_name, last_name, date_of_birth, age, user_id } =
+    req.body;
   console.log(first_name);
   console.log(middle_name);
   console.log(last_name);
@@ -142,15 +181,23 @@ router.post('/update-user-personal', async (req, res) => {
 
     await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
 
-    res.status(200).json({ success: true, message: 'Update successful.' });
+    res.status(200).json({ success: true, message: "Update successful." });
   } catch (error) {
-    console.error('error:', error);
-    res.status(500).json({ error: 'Server error.' });
+    console.error("error:", error);
+    res.status(500).json({ error: "Server error." });
   }
 });
 
-router.post('/update-user-job', async (req, res) => {
-  const { previous_employment_1, previous_employment_2, current_employment_1, current_employment_2, future_employment_1, future_employment_2, user_id } = req.body;
+router.post("/update-user-job", async (req, res) => {
+  const {
+    previous_employment_1,
+    previous_employment_2,
+    current_employment_1,
+    current_employment_2,
+    future_employment_1,
+    future_employment_2,
+    user_id,
+  } = req.body;
   console.log(previous_employment_1);
   console.log(previous_employment_2);
   console.log(current_employment_1);
@@ -173,15 +220,21 @@ router.post('/update-user-job', async (req, res) => {
 
     await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
 
-    res.status(200).json({ success: true, message: 'Update successful.' });
+    res.status(200).json({ success: true, message: "Update successful." });
   } catch (error) {
-    console.error('error:', error);
-    res.status(500).json({ error: 'Server error.' });
+    console.error("error:", error);
+    res.status(500).json({ error: "Server error." });
   }
 });
 
-router.post('/update-user-education', async (req, res) => {
-  const { elementary_education, high_school_education, college_education, course_taken, user_id } = req.body;
+router.post("/update-user-education", async (req, res) => {
+  const {
+    elementary_education,
+    high_school_education,
+    college_education,
+    course_taken,
+    user_id,
+  } = req.body;
   console.log(elementary_education);
   console.log(high_school_education);
   console.log(college_education);
@@ -195,43 +248,42 @@ router.post('/update-user-education', async (req, res) => {
     userdata.form_data.data.high_school_education = high_school_education;
     userdata.form_data.data.college_education = college_education;
     userdata.form_data.data.course_taken = course_taken;
-    
+
     console.log(userdata);
 
     await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
 
-    res.status(200).json({ success: true, message: 'Update successful.' });
+    res.status(200).json({ success: true, message: "Update successful." });
   } catch (error) {
-    console.error('error:', error);
-    res.status(500).json({ error: 'Server error.' });
+    console.error("error:", error);
+    res.status(500).json({ error: "Server error." });
   }
 });
 
-router.post('/update-user-account', async (req, res) => {
+router.post("/update-user-account", async (req, res) => {
   const { email, account_password, user_id } = req.body;
   console.log(email);
   console.log(account_password);
- 
+
   try {
     const userdata = await GET_USER_BY_ID(user_id);
     userdata.form_data = JSON.parse(userdata.form_data);
     userdata.form_data.data.email = email;
     userdata.form_data.data.password = account_password;
-    
 
     console.log(userdata);
 
     await UPDATE_USER_FORM_DATA(JSON.stringify(userdata.form_data), user_id);
     await UPDATE_USER_ACC_DATA(email, account_password, user_id);
 
-    res.status(200).json({ success: true, message: 'Update successful.' });
+    res.status(200).json({ success: true, message: "Update successful." });
   } catch (error) {
-    console.error('error:', error);
-    res.status(500).json({ error: 'Server error.' });
+    console.error("error:", error);
+    res.status(500).json({ error: "Server error." });
   }
 });
 
-router.post('/facebook-results', async (req, res) => {
+router.post("/facebook-results", async (req, res) => {
   try {
     const config = await GET_FACEBOOK_CONFIG();
     const allsubmissions = await GET_ALL_SUBMISSIONS();
@@ -247,7 +299,7 @@ router.post('/facebook-results', async (req, res) => {
           barangayCount[barangay] = (barangayCount[barangay] || 0) + 1;
         }
       } catch (err) {
-        console.error('Invalid JSON in form_data:', err);
+        console.error("Invalid JSON in form_data:", err);
       }
     }
 
@@ -258,83 +310,187 @@ router.post('/facebook-results', async (req, res) => {
 
     // Format as lines
     const barangayText = sortedBarangays
-      .map(([barangay, count]) => `🏘️ Barangay ${barangay}: ${count} submissions`)
-      .join('\n');
+      .map(
+        ([barangay, count]) => `🏘️ Barangay ${barangay}: ${count} submissions`,
+      )
+      .join("\n");
 
     // Replace placeholders
     let message = config[0].message
-      .replace('${date}', formatDate(new Date()))
-      .replace('${barangay}', barangayText);
+      .replace("${date}", formatDate(new Date()))
+      .replace("${barangay}", barangayText);
 
     console.log(message);
 
-    const post = await axios.post('https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0', {
-      message: message,
-    });
+    const post = await axios.post(
+      "https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0",
+      {
+        message: message,
+      },
+    );
 
     // console.log(post);
-    await INSERT_FACEBOOK_LOG(config[0].message, 'Success');
-    res.status(200).json({ success: true, message: 'Posted successful.' });
+    await INSERT_FACEBOOK_LOG(config[0].message, "Success");
+    res.status(200).json({ success: true, message: "Posted successful." });
   } catch (error) {
-    console.error('❌ Error posting to Facebook:', error.response?.data || error.message);
-    await INSERT_FACEBOOK_LOG(
-      typeof error.response?.data === 'string' 
-        ? error.response.data 
-        : error.message || "Failed to post.", 
-      'Failed'
+    console.error(
+      "❌ Error posting to Facebook:",
+      error.response?.data || error.message,
     );
-    res.status(500).json({ error: 'Server error.' });
+    await INSERT_FACEBOOK_LOG(
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.message || "Failed to post.",
+      "Failed",
+    );
+    res.status(500).json({ error: "Server error." });
   }
 });
 
-router.post('/facebook-form', async (req, res) => {
+router.post("/facebook-form", async (req, res) => {
   try {
     const config = await GET_FACEBOOK_CONFIG();
 
-    const post = await axios.post('https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0', {
-      message: config[1].message,
-    });
+    const post = await axios.post(
+      "https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0",
+      {
+        message: config[1].message,
+      },
+    );
 
     // console.log(post);
-    await INSERT_FACEBOOK_LOG(config[0].message, 'Success');
-    res.status(200).json({ success: true, message: 'Posted successful.' });
+    await INSERT_FACEBOOK_LOG(config[0].message, "Success");
+    res.status(200).json({ success: true, message: "Posted successful." });
   } catch (error) {
-    console.error('❌ Error posting to Facebook:', error.response?.data || error.message);
-    await INSERT_FACEBOOK_LOG(
-      typeof error.response?.data === 'string' 
-        ? error.response.data 
-        : error.message || "Failed to post.", 
-      'Failed'
+    console.error(
+      "❌ Error posting to Facebook:",
+      error.response?.data || error.message,
     );
-    res.status(500).json({ error: 'Server error.' });
+    await INSERT_FACEBOOK_LOG(
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.message || "Failed to post.",
+      "Failed",
+    );
+    res.status(500).json({ error: "Server error." });
   }
 });
 
-router.post('/facebook-custom', async (req, res) => {
+router.post("/facebook-custom", async (req, res) => {
   try {
-    const {message} = req.body;
+    const { message } = req.body;
 
-    if (message){
-      const post = await axios.post('https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0', {
-        message: message,
-      });
+    if (message) {
+      const post = await axios.post(
+        "https://hook.eu2.make.com/78mo5ah1hchymqm1uyyd5ejr9xl4b0i0",
+        {
+          message: message,
+        },
+      );
 
       // console.log(post);
-      await INSERT_FACEBOOK_LOG(message, 'Success');
-      res.status(200).json({ success: true, message: 'Posted successful.' });
+      await INSERT_FACEBOOK_LOG(message, "Success");
+      res.status(200).json({ success: true, message: "Posted successful." });
     } else {
-          res.status(500).json({ message: 'No message to post.' });
+      res.status(500).json({ message: "No message to post." });
     }
-    
   } catch (error) {
-    console.error('❌ Error posting to Facebook:', error.response?.data || error.message);
-    await INSERT_FACEBOOK_LOG(
-      typeof error.response?.data === 'string' 
-        ? error.response.data 
-        : error.message || "Failed to post.", 
-      'Failed'
+    console.error(
+      "❌ Error posting to Facebook:",
+      error.response?.data || error.message,
     );
-    res.status(500).json({ error: 'Server error.' });
+    await INSERT_FACEBOOK_LOG(
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.message || "Failed to post.",
+      "Failed",
+    );
+    res.status(500).json({ error: "Server error." });
   }
 });
+
+router.post("/employer/createacc", async (req, res) => {
+  try {
+    const { company, email, password } = req.body || {};
+
+    if (!company || !email || !password) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+    if (password.length < 8) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 8 characters." });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const existing = await GET_EMPLOYER_BY_EMAIL(normalizedEmail);
+    if (existing) {
+      return res.status(409).json({ message: "Email is already registered." });
+    }
+
+    const password_hash = await hashPassword(password);
+    const id = await CREATE_EMPLOYER(
+      company.trim(),
+      normalizedEmail,
+      password_hash,
+    );
+
+    return res
+      .status(201)
+      .json({ message: "Account created.", employer_id: id });
+  } catch (err) {
+    if (err?.code === "ER_DUP_ENTRY") {
+      return res.status(409).json({ message: "Email is already registered." });
+    }
+    console.error("CREATE_EMPLOYER error:", err);
+    return res.status(500).json({ message: "Server error." });
+  }
+});
+
+router.post("/employer/login", async (req, res) => {
+  try {
+    const { email, password } = req.body || {};
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password required." });
+    }
+
+    const employer = await GET_EMPLOYER_BY_EMAIL(email.trim().toLowerCase());
+    if (!employer) {
+      return res.status(401).json({ message: "Invalid credentials." });
+    }
+
+    const ok = await comparePassword(password, employer.password);
+    if (!ok) {
+      return res.status(401).json({ message: "Invalid credentials." });
+    }
+    if (employer.status !== "active") {
+      return res.status(403).json({ message: "Account is disabled." });
+    }
+
+    const token = await generateAuthToken(); // <-- no argument
+
+    const saved = await UPDATE_AUTH_TOKEN_EMPLOYER(token, employer.id);
+    if (!saved) {
+      console.error("Token write failed for employer id:", employer.id);
+      return res
+        .status(500)
+        .json({ message: "Login failed. Please try again." });
+    }
+
+    res.cookie("auth_token", token, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    });
+
+    return res.json({ message: "Logged in.", employer_id: employer.id });
+  } catch (err) {
+    console.error("EMPLOYER_LOGIN error:", err);
+    return res.status(500).json({ message: "Server error." });
+  }
+});
+
 export default router;

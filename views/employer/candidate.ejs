@@ -1,0 +1,170 @@
+<%
+function formatDate(dateStr) {
+  if (!dateStr) return "—";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function initials(name) {
+  return (name || "")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((n) => (n[0] ? n[0].toUpperCase() : ""))
+    .join("");
+}
+
+%>
+
+<div class="space-y-6 p-6 max-w-4xl mx-auto">
+
+  <!-- Back link -->
+  <a href="/employer/dashboard"
+     class="inline-flex items-center gap-1 text-sm text-emerald-700 hover:underline">
+    ← Back to candidates
+  </a>
+
+  <!-- Profile header -->
+  <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+      <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-2xl font-bold text-emerald-700">
+        <%= initials(candidate.name) %>
+      </div>
+      <div class="flex-1">
+        <h1 class="text-2xl font-bold text-gray-900"><%= candidate.name %></h1>
+        <div class="mt-2 flex flex-wrap gap-2 text-sm">
+          <% if (candidate.age) { %>
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-gray-700"><%= candidate.age %> years old</span>
+          <% } %>
+          <% if (candidate.barangay) { %>
+            <span class="rounded-full bg-sky-50 px-3 py-1 text-sky-700"><%= candidate.barangay %></span>
+          <% } %>
+          <% if (candidate.course_taken) { %>
+            <span class="rounded-full bg-teal-50 px-3 py-1 text-teal-700"><%= candidate.course_taken %></span>
+          <% } %>
+        </div>
+
+        <div class="mt-4 flex flex-wrap gap-2">
+          <a href="mailto:<%= candidate.email %>?subject=Job%20opportunity"
+             class="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800">
+            Contact via email
+          </a>
+          <button type="button" id="contactBtn"
+                  data-candidate-id="<%= candidate.id %>"
+                  data-candidate-name="<%= candidate.name %>"
+                  class="rounded-lg border border-emerald-700 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-50">
+            Send message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info sections -->
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+
+    <!-- Contact -->
+    <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Contact</h2>
+      <dl class="space-y-2 text-sm">
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">Email</dt>
+          <dd class="truncate text-gray-800"><%= candidate.email || "—" %></dd>
+        </div>
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">Date of birth</dt>
+          <dd class="text-gray-800"><%= formatDate(candidate.date_of_birth) %></dd>
+        </div>
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">Barangay</dt>
+          <dd class="text-gray-800"><%= candidate.barangay || "—" %></dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Skills -->
+    <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Skills</h2>
+      <% if (candidate.skills) { %>
+        <div class="flex flex-wrap gap-2">
+          <% candidate.skills.split(",").map(s => s.trim()).filter(Boolean).forEach(skill => { %>
+            <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+              <%= skill %>
+            </span>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p class="text-sm text-gray-500">No skills listed</p>
+      <% } %>
+    </div>
+
+    <!-- Employment history -->
+    <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Previous Employment</h2>
+      <% const prev = [candidate.prev_job_1, candidate.prev_job_2].filter(Boolean); %>
+      <% if (prev.length) { %>
+        <ul class="space-y-2 text-sm">
+          <% prev.forEach(job => { %>
+            <li class="flex gap-2 text-gray-800">
+              <span class="text-gray-400">•</span>
+              <span><%= job %></span>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p class="text-sm text-gray-500">No previous employment</p>
+      <% } %>
+    </div>
+
+    <!-- Looking for -->
+    <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Looking For</h2>
+      <% const want = [candidate.want_job_1, candidate.want_job_2].filter(Boolean); %>
+      <% if (want.length) { %>
+        <ul class="space-y-2 text-sm">
+          <% want.forEach(job => { %>
+            <li class="flex gap-2 text-gray-800">
+              <span class="text-gray-400">•</span>
+              <span><%= job %></span>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p class="text-sm text-gray-500">No preferred jobs listed</p>
+      <% } %>
+    </div>
+
+    <!-- Education -->
+    <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm md:col-span-2">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Education</h2>
+      <dl class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">Elementary</dt>
+          <dd class="text-gray-800"><%= candidate.elementary_education || "—" %></dd>
+        </div>
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">High school</dt>
+          <dd class="text-gray-800"><%= candidate.high_school_education || "—" %></dd>
+        </div>
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">College</dt>
+          <dd class="text-gray-800"><%= candidate.college_education || "—" %></dd>
+        </div>
+        <div class="flex gap-3">
+          <dt class="w-32 shrink-0 text-gray-500">Course</dt>
+          <dd class="text-gray-800"><%= candidate.course_taken || "—" %></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Footer note -->
+  <p class="text-xs text-gray-400 text-center">
+    Registered on <%= formatDate(candidate.date_added) %>
+  </p>
+</div>

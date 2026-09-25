@@ -1,6 +1,5 @@
-import db from './db.js';       // Now process.env.DBNAME will be defined
-import * as queries from './queries.js';
-
+import db from "./db.js"; // Now process.env.DBNAME will be defined
+import * as queries from "./queries.js";
 
 // Insert new row
 export async function insertItem(...values) {
@@ -38,7 +37,6 @@ export async function upsertItem(...values) {
   return result.insertId || result.affectedRows > 0;
 }
 
-
 // Admin
 export async function GET_BY_EMAIL(email) {
   const [rows] = await db.execute(queries.GET_BY_EMAIL, [email]);
@@ -50,7 +48,6 @@ export async function VERIFY_AUTH(token) {
   return results[0];
 }
 
-
 export async function UPDATE_AUTH_TOKEN(token, id) {
   const [result] = await db.execute(queries.UPDATE_AUTH_TOKEN, [token, id]);
   return result.affectedRows > 0;
@@ -61,9 +58,14 @@ export async function GET_ALL_BARANGAYS() {
   return rows;
 }
 
-
 export async function EDIT_BARANGAY_BY_ID(name, lat, lng, population, id) {
-  const [result] = await db.execute(queries.EDIT_BARANGAY_BY_ID, [name, lat, lng, population, id]);
+  const [result] = await db.execute(queries.EDIT_BARANGAY_BY_ID, [
+    name,
+    lat,
+    lng,
+    population,
+    id,
+  ]);
   return result.affectedRows > 0;
 }
 
@@ -78,7 +80,10 @@ export async function GET_ALL_FACEBOOK_POSTS() {
 }
 
 export async function INSERT_FACEBOOK_LOG(content, status) {
-  const [result] = await db.execute(queries.INSERT_FACEBOOK_LOG, [content, status]);
+  const [result] = await db.execute(queries.INSERT_FACEBOOK_LOG, [
+    content,
+    status,
+  ]);
   return result.insertId;
 }
 
@@ -98,25 +103,38 @@ export async function GET_USER_BY_ID(id) {
   return rows[0];
 }
 
-
 export async function UPDATE_USER_FORM_DATA(form_data, id) {
-  const [result] = await db.execute(queries.UPDATE_USER_FORM_DATA, [form_data, id]);
+  const [result] = await db.execute(queries.UPDATE_USER_FORM_DATA, [
+    form_data,
+    id,
+  ]);
   return result.affectedRows > 0;
 }
 
 export async function UPDATE_USER_ACC_DATA(email, password, id) {
-  const [result] = await db.execute(queries.UPDATE_USER_ACC_DATA, [email, password, id]);
+  const [result] = await db.execute(queries.UPDATE_USER_ACC_DATA, [
+    email,
+    password,
+    id,
+  ]);
   return result.affectedRows > 0;
 }
 
 export async function UPDATE_AUTH_TOKEN_USER(token, id) {
-  const [result] = await db.execute(queries.UPDATE_AUTH_TOKEN_USER, [token, id]);
+  const [result] = await db.execute(queries.UPDATE_AUTH_TOKEN_USER, [
+    token,
+    id,
+  ]);
   return result.affectedRows > 0;
 }
 
 // api
 export async function INSERT_SUBMISSION(data, email, password) {
-  const [result] = await db.execute(queries.INSERT_SUBMISSION, [JSON.stringify(data), email, password]);
+  const [result] = await db.execute(queries.INSERT_SUBMISSION, [
+    JSON.stringify(data),
+    email,
+    password,
+  ]);
   return result.insertId;
 }
 
@@ -125,8 +143,53 @@ export async function GET_ALL_SUBMISSIONS() {
   return rows;
 }
 
-
-export async function CHECK_SUBMISSION_EXISTED(first_name, middle_name, last_name) {
-  const [rows] = await db.execute(queries.CHECK_SUBMISSION_EXISTED, [first_name, middle_name, last_name]);
+export async function CHECK_SUBMISSION_EXISTED(
+  first_name,
+  middle_name,
+  last_name,
+) {
+  const [rows] = await db.execute(queries.CHECK_SUBMISSION_EXISTED, [
+    first_name,
+    middle_name,
+    last_name,
+  ]);
   return rows[0];
+}
+
+// employers
+export async function GET_EMPLOYER_BY_EMAIL(email) {
+  const [rows] = await db.execute(queries.GET_EMPLOYER_BY_EMAIL, [email]);
+  return rows[0];
+}
+
+export async function GET_EMPLOYER_BY_ID(id) {
+  const [rows] = await db.execute(queries.GET_EMPLOYER_BY_ID, [id]);
+  return rows[0];
+}
+
+export async function CREATE_EMPLOYER(company, email, password) {
+  const [result] = await db.execute(queries.CREATE_EMPLOYER, [
+    company,
+    email,
+    password,
+  ]);
+  return result.insertId;
+}
+
+export async function VERIFY_AUTH_EMPLOYER(token) {
+  const [results] = await db.execute(queries.VERIFY_AUTH_EMPLOYER, [token]);
+  return results[0];
+}
+
+export async function UPDATE_AUTH_TOKEN_EMPLOYER(token, id) {
+  const [result] = await db.execute(queries.UPDATE_AUTH_TOKEN_EMPLOYER, [
+    token,
+    id,
+  ]);
+  return result.affectedRows > 0;
+}
+
+export async function GET_UNEMPLOYED_CANDIDATES() {
+  const [rows] = await db.execute(queries.GET_UNEMPLOYED_CANDIDATES);
+  return rows;
 }

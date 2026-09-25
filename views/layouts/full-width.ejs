@@ -133,6 +133,29 @@
                 <script src="/js/facebook.js"></script>
             <% } %>
 
+
+            <% if (path.includes('/employer/login')) { %>
+                <%- include('../employer/login') %>
+                <script src="/js/employer/login.js"></script>
+            <% } %>
+
+            <% if (path.includes('/employer/createacc')) { %>
+                <%- include('../employer/createacc') %>
+                <script src="/js/employer/createacc.js"></script>
+            <% } %>
+
+           <% if (path.includes('/employer/dashboard')) { %>
+                <div class="flex-1 min-w-0 h-screen overflow-y-auto bg-gray-50/60">
+                    <%- include('../employer/dashboard') %>
+                </div>
+                <script src="/js/employer/dashboard.js"></script>
+            <% } %>
+
+            <% if (path.includes('/employer/candidates/')) { %>
+                <%- include('../employer/candidate') %>
+                <script src="/js/employer/candidate.js"></script>
+            <% } %>
+
             <!-- form  -->
             <% if (path.includes('/form')) { %>
                 <div class="flex w-screen h-full flex-row items-center justify-center overflow-y-auto">
