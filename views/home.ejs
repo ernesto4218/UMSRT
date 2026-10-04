@@ -1,239 +1,1311 @@
-<div class="flex flex-col overflow-y-auto overflow-x-hidden">
-    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
-        <div class="w-screen flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/img/logo.jpg" class="bg-white rounded-full w-10 h-10">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap">UMSRT</span>
+<div
+  class="flex flex-col w-full overflow-y-auto overflow-x-hidden bg-white text-gray-900 antialiased"
+>
+  <!-- ========== NAV ========== -->
+  <nav
+    class="fixed top-0 z-50 w-full border-b border-gray-200/70 bg-white/80 backdrop-blur-xl"
+  >
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
+    >
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/img/logo.jpg" class="h-9 w-9 rounded-xl shadow-sm" />
+        <span class="text-lg font-bold tracking-tight">
+          Job<span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-sky-500"
+            >Match</span
+          >
+        </span>
+      </a>
+
+      <div class="hidden items-center gap-1 md:flex">
+        <a
+          href="#features"
+          class="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          >Features</a
+        >
+        <a
+          href="#how"
+          class="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          >How it works</a
+        >
+        <a
+          href="#customers"
+          class="hidden rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          >Customers</a
+        >
+        <a
+          href="#objectives"
+          class="rounded-lg px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          >About</a
+        >
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a
+          href="/employer/login"
+          class="hidden rounded-xl px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 sm:inline-flex"
+        >
+          Employer
         </a>
-        
-        <div class="flex flex-row gap-5 items-center justify-center">
-            <a href="#home" class="text-sm font-semibold text-gray-700">Home</a>
-            <a href="#overview" class="text-sm font-semibold text-gray-700">Overview</a>
-            <a href="#features" class="text-sm font-semibold text-gray-700">Features</a>
-            <a href="#objectives" class="text-sm font-semibold text-gray-700">Objectives</a>
-        </div>
-
-
-        <div class="flex flex-row gap-4">
-            <a href="/users/login">
-                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse w-fit">
-                    <button type="button" class="text-emerald-600 bg-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center">User</button>
-                </div>
-            </a>
-            <a href="/employer/login">
-                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse w-fit">
-                    <button type="button" class="text-emerald-600 bg-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center">Employer</button>
-                </div>
-            </a>
-            <a href="/admin/login">
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse w-fit">
-                <button type="button" class="text-white bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Admin</button>
-            </div>
+        <a
+          href="/users/login"
+          class="hidden rounded-xl px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 sm:inline-flex"
+        >
+          Jobseeker
         </a>
-        </div>
+        <a
+          href="/admin/login"
+          class="inline-flex items-center gap-1.5 rounded-xl bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800"
+        >
+          Get started
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="home" class="flex min-h-max overflow-hidden pt-32 pb-20">
+    <!-- grid backdrop -->
+    <div
+      class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_60%,transparent_100%)]"
+    ></div>
+    <div
+      class="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-emerald-200/40 via-sky-200/30 to-transparent blur-3xl"
+    ></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <!-- Eyebrow badge -->
+        <a
+          href="#features"
+          class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/60 px-3.5 py-1.5 text-xs font-medium text-emerald-800 shadow-sm transition hover:bg-emerald-100"
+        >
+          <span
+            class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"
+          ></span>
+          Real-time unemployment mapping, live in Pagadian City
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </a>
+
+        <h1
+          class="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+        >
+          Match talent to opportunity,<br class="hidden sm:block" />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-sky-500"
+            >map unemployment in real time</span
+          >
+        </h1>
+
+        <p class="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-gray-600">
+          Job Matching Analysis combines skills-based matching, barangay-level geographic
+          mapping, and automated Facebook dissemination — so local governments,
+          employers, and job seekers act on the same live data.
+        </p>
+
         
-    </nav>
 
-    <div id="home" class="relative w-screen h-screen">
-        <div class="absolute inset-0 bg-[url('/img/mapbgmin.png')] bg-cover bg-center bg-no-repeat"></div>
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-xs"></div>
-        <div class="relative z-10 flex flex-col px-40 h-full mt-10 pb-80 pt-80">
-        <div class="flex flex-col justify-center">
-            <h1 class="mb-4 text-5xl font-extrabold text-white"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Unemployment Monitoring System Through Mapping <br></span> with Real-Time Updates Using Social Media Platforms</h1>
-            <p class="text-lg font-normal text-gray-200 lg:text-xl max-w-[80%]">
-            The Pagadian City Unemployment Monitoring System is a web-based platform designed to track and visualize real-time unemployment data at the barangay level. With integrated geographic mapping and social media dissemination via Facebook, the system enhances how unemployment trends are understood, shared, and addressed within the city.
+      <!-- Product preview mockup -->
+      <div class="relative mx-auto mt-16 max-w-6xl">
+        <div
+          class="absolute -inset-x-6 -inset-y-4 rounded-3xl bg-gradient-to-r from-emerald-200/40 via-teal-200/30 to-sky-200/40 blur-2xl"
+        ></div>
+
+        <div
+          class="relative rounded-2xl border border-gray-200/80 bg-white shadow-2xl shadow-gray-900/10 ring-1 ring-gray-900/5"
+        >
+          <!-- Window chrome -->
+          <div
+            class="flex items-center gap-2 border-b border-gray-100 px-4 py-3"
+          >
+            <span class="h-3 w-3 rounded-full bg-red-400"></span>
+            <span class="h-3 w-3 rounded-full bg-amber-400"></span>
+            <span class="h-3 w-3 rounded-full bg-emerald-400"></span>
+            <div
+              class="ml-3 hidden flex-1 items-center gap-2 rounded-lg bg-gray-50 px-3 py-1 text-xs text-gray-500 sm:flex"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="11"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="18" height="11" x="3" y="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              https://job-matching.sys4dev.site
+            </div>
+          </div>
+
+          <!-- Fake dashboard -->
+          <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:p-6">
+            <!-- Left: search + filters -->
+            <div class="space-y-3 sm:col-span-1">
+              <div
+                class="rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-teal-50/40 p-4"
+              >
+                <p
+                  class="text-[10px] font-bold uppercase tracking-widest text-emerald-700"
+                >
+                  Match search
+                </p>
+                <div
+                  class="mt-2 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-500 shadow-sm"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                  customer service
+                </div>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  <span
+                    class="rounded-full border border-gray-200 bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600"
+                    >Programming</span
+                  >
+                  <span
+                    class="rounded-full border border-gray-200 bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600"
+                    >Cooking</span
+                  >
+                  <span
+                    class="rounded-full border border-gray-200 bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600"
+                    >Driver</span
+                  >
+                </div>
+              </div>
+              <div class="rounded-xl border border-gray-200 bg-white p-4">
+                <p
+                  class="text-[10px] font-bold uppercase tracking-widest text-gray-500"
+                >
+                  Top barangays
+                </p>
+                <div class="mt-3 space-y-2">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-700">San Jose</span
+                    ><span class="font-semibold text-emerald-700">92%</span>
+                  </div>
+                  <div class="h-1.5 w-full rounded-full bg-gray-100">
+                    <div
+                      class="h-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                      style="width: 92%"
+                    ></div>
+                  </div>
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-700">Santa Lucia</span
+                    ><span class="font-semibold text-emerald-700">74%</span>
+                  </div>
+                  <div class="h-1.5 w-full rounded-full bg-gray-100">
+                    <div
+                      class="h-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                      style="width: 74%"
+                    ></div>
+                  </div>
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-700">Balangasan</span
+                    ><span class="font-semibold text-emerald-700">58%</span>
+                  </div>
+                  <div class="h-1.5 w-full rounded-full bg-gray-100">
+                    <div
+                      class="h-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                      style="width: 58%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: candidate cards -->
+            <div class="space-y-3 sm:col-span-2">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-semibold text-gray-700">
+                  <span class="text-emerald-700">128</span> candidates matched
+                </p>
+                <span
+                  class="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700"
+                  >Filters active · 3</span
+                >
+              </div>
+
+              <div
+                class="rounded-xl border border-gray-200 bg-white p-3.5 shadow-sm"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xs font-bold text-white shadow"
+                  >
+                    JM
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold text-gray-900">
+                      Juan Miguel Reyes
+                    </p>
+                    <p class="truncate text-xs text-gray-500">
+                      Customer Service · San Jose
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-semibold text-white"
+                      >Strong match</span
+                    >
+                    <span class="text-sm font-bold text-emerald-700">94%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-xl border border-gray-200 bg-white p-3.5 shadow-sm"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xs font-bold text-white shadow"
+                  >
+                    AC
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold text-gray-900">Ana Cruz</p>
+                    <p class="truncate text-xs text-gray-500">
+                      Data Analysis · Santa Lucia
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-semibold text-white"
+                      >Good match</span
+                    >
+                    <span class="text-sm font-bold text-emerald-700">81%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-xl border border-gray-200 bg-white p-3.5 shadow-sm"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xs font-bold text-white shadow"
+                  >
+                    RS
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold text-gray-900">
+                      Rico Santos
+                    </p>
+                    <p class="truncate text-xs text-gray-500">
+                      Driver · Balangasan
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded-full bg-amber-500 px-2 py-0.5 text-[10px] font-semibold text-white"
+                      >Fair match</span
+                    >
+                    <span class="text-sm font-bold text-amber-600">48%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logo cloud -->
+      <div class="mt-20 text-center">
+        <p
+          class="text-xs font-semibold uppercase tracking-widest text-gray-400"
+        >
+          Trusted by local government units and PESO offices
+        </p>
+        <div
+          class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-70"
+        >
+          <span class="text-sm font-bold tracking-tight text-gray-500"
+            >PAGADIAN CITY</span
+          >
+          <span class="text-sm font-bold tracking-tight text-gray-500"
+            >PESO</span
+          >
+          <span class="text-sm font-bold tracking-tight text-gray-500"
+            >DSWD</span
+          >
+          <span class="text-sm font-bold tracking-tight text-gray-500"
+            >DOLE</span
+          >
+          <span class="text-sm font-bold tracking-tight text-gray-500"
+            >BARANGAY HUB</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== METRICS STRIP ========== -->
+  <section class="border-y border-gray-200 bg-gray-50/70">
+    <div
+      class="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8"
+    >
+      <div class="text-center">
+        <p class="text-4xl font-bold tracking-tight text-gray-900">100+</p>
+        <p
+          class="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500"
+        >
+          Job seekers mapped
+        </p>
+      </div>
+      <div class="text-center">
+        <p class="text-4xl font-bold tracking-tight text-gray-900">54</p>
+        <p
+          class="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500"
+        >
+          Barangays covered
+        </p>
+      </div>
+      <div class="text-center">
+        <p class="text-4xl font-bold tracking-tight text-gray-900">&lt; 2s</p>
+        <p
+          class="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500"
+        >
+          Match computation
+        </p>
+      </div>
+      <div class="text-center">
+        <p class="text-4xl font-bold tracking-tight text-gray-900">89%</p>
+        <p
+          class="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500"
+        >
+          Placement accuracy
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES (BENTO) ========== -->
+  <section id="features" class="min-w-5xl px-4 py-24 ">
+    <div class="mx-auto max-w-5xl text-center">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/60 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700"
+      >
+        Platform
+      </span>
+      <h2
+        class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+      >
+        Everything you need to run a modern labor market
+      </h2>
+      <p class="mt-4 text-lg text-gray-600">
+        From barangay-level data collection to automated social dissemination —
+        one connected system.
+      </p>
+    </div>
+
+    <div class="mt-16   grid grid-cols-1 gap-4 md:grid-cols-6">
+      <!-- Big card 1 -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-lg md:col-span-4"
+      >
+        <div
+          class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-100/60 blur-2xl"
+        ></div>
+        <div class="relative flex items-start gap-4">
+          <div
+            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900">
+              Skill-to-job matching engine
+            </h3>
+            <p class="mt-2 max-w-xl text-sm text-gray-600">
+              Weighted scoring on skills, qualifications, barangay proximity,
+              and prior experience. Candidates are ranked in under two seconds —
+              no manual shortlisting.
             </p>
-
-            <div class="flex flex-row items-center gap-4 justify-start mt-10">
-            <a href="/admin/login">
-                <button type="button"
-                    class="py-2.5 px-5 text-sm font-medium text-white bg-emerald-500 rounded-lg hover:bg-emerald-100 hover:text-black focus:outline-none focus:ring-4 focus:ring-gray-100">
-                    Get Started
-                </button>
-            </a>
-            
-            <button type="button"
-                class="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-emerald-100 hover:text-black focus:outline-none focus:ring-4 focus:ring-gray-100">
-                Documentation
-            </button>
-            </div>
+          </div>
         </div>
-        </div>
-    </div>
 
-    <div id="overview" class="bg-white w-screen h-auto pt-30 px-8">
-        <div class="px-40">
-            <h1
-                class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
-                System <span class="underline underline-offset-3 decoration-5 decoration-emerald-400">Overview</span>
-            </h1>
-            <p class="text-xl font-normal text-black">
-                The Unemployment Monitoring System Through Mapping with Real-Time Update Using Social Media Platforms is a web-based solution developed to address the growing need for accurate, timely, and location-specific unemployment data in Pagadian City, Zamboanga del Sur. This system empowers local government units, barangay officials, and the general public by providing a centralized platform for tracking and analyzing unemployment trends across different barangays.
-                <br><br>Leveraging interactive geographic mapping, the system visualizes the concentration of unemployed individuals by location, making it easier to identify areas most in need of intervention. Additionally, the system is integrated with Facebook, enabling the automated posting of summarized unemployment data, thus ensuring transparency and wide public access through familiar digital channels.
-                <br><br>Designed with usability and accessibility in mind, the system features secure modules for authorized users to input and manage unemployment records. This automation replaces traditional manual reporting methods, resulting in improved accuracy, reduced administrative workload, and faster data dissemination.
+        <!-- mini match preview -->
+        <div class="relative mt-6 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <div class="rounded-xl border border-gray-200 bg-gray-50/60 p-3">
+            <p
+              class="text-[10px] font-bold uppercase tracking-widest text-gray-500"
+            >
+              Skills
             </p>
-            <div class="flex items-center mt-5 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
-                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Info</span>
-                <div>
-                    <span class="font-medium">Created</span> as a capstone system, this platform modernizes unemployment tracking by shifting from manual recordkeeping to real-time, location-based digital monitoring.
-                </div>
-            </div>
+            <p class="mt-1 text-xs text-gray-700">Customer service · English</p>
+          </div>
+          <div class="rounded-xl border border-gray-200 bg-gray-50/60 p-3">
+            <p
+              class="text-[10px] font-bold uppercase tracking-widest text-gray-500"
+            >
+              Location
+            </p>
+            <p class="mt-1 text-xs text-gray-700">San Jose · 1.2 km</p>
+          </div>
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-3">
+            <p
+              class="text-[10px] font-bold uppercase tracking-widest text-emerald-700"
+            >
+              Match score
+            </p>
+            <p class="mt-1 text-xs font-bold text-emerald-800">94% · Strong</p>
+          </div>
         </div>
+      </div>
+
+      <!-- Side card 1 -->
+      <div
+        class="group rounded-2xl border border-gray-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-lg md:col-span-2"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+        </div>
+        <h3 class="mt-4 text-lg font-bold text-gray-900">
+          Barangay-level mapping
+        </h3>
+        <p class="mt-2 text-sm text-gray-600">
+          Interactive heatmaps reveal where unemployment concentrates — and
+          where demand for skills is unmet.
+        </p>
+      </div>
+
+      <!-- Side card 2 -->
+      <div
+        class="group rounded-2xl border border-gray-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-lg md:col-span-2"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+            />
+          </svg>
+        </div>
+        <h3 class="mt-4 text-lg font-bold text-gray-900">
+          Social media auto-posting
+        </h3>
+        <p class="mt-2 text-sm text-gray-600">
+          Publish job vacancies and unemployment summaries directly to official
+          Facebook pages.
+        </p>
+      </div>
+
+      <!-- Side card 3 -->
+      <div
+        class="group rounded-2xl border border-gray-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-lg md:col-span-2"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="18" height="11" x="3" y="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+        <h3 class="mt-4 text-lg font-bold text-gray-900">
+          Secure role-based access
+        </h3>
+        <p class="mt-2 text-sm text-gray-600">
+          Separate portals for job seekers, employers, and LGU admins — with
+          full audit trails.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section
+    id="how"
+    class="border-y border-gray-200 bg-gradient-to-b from-gray-50 to-white"
+  >
+    <div class="mx-auto w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700"
+        >
+          How it works
+        </span>
+        <h2
+          class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+        >
+          From profile to placement in three steps
+        </h2>
+        <p class="mt-4 text-lg text-gray-600">
+          No spreadsheets, no walk-in queues — everything happens in the
+          platform.
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div
+          class="relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-sm font-bold text-white"
+              >01</span
+            >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-gray-400"
+              >Register</span
+            >
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-gray-900">
+            Build the profile
+          </h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Job seekers register skills, work history, and preferred barangay.
+            Employers post vacancies with required competencies.
+          </p>
+        </div>
+
+        <div
+          class="relative rounded-2xl border border-gray-200 bg-white p-7 shadow-sm"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-sm font-bold text-white"
+              >02</span
+            >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-gray-400"
+              >Analyze</span
+            >
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-gray-900">
+            Match &amp; score
+          </h3>
+          <p class="mt-2 text-sm text-gray-600">
+            The engine ranks candidates against postings — scoring on skills,
+            qualifications, and worksite proximity.
+          </p>
+        </div>
+
+        <div
+          class="relative rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50/60 p-7 shadow-sm"
+        >
+          <div class="flex items-center justify-between">
+            <span
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-sm font-bold text-white shadow-md shadow-emerald-500/25"
+              >03</span
+            >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest text-emerald-700"
+              >Publish</span
+            >
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-gray-900">Notify &amp; map</h3>
+          <p class="mt-2 text-sm text-gray-600">
+            Matches are pushed to users and posted to Facebook, while the live
+            map updates placement trends per barangay.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CUSTOMERS / TESTIMONIALS ========== -->
+  <section id="customers" class="hidden mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/60 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700"
+      >
+        Customers
+      </span>
+      <h2
+        class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+      >
+        Loved by PESO officers and local employers
+      </h2>
     </div>
 
-    <div id="features" class="bg-white w-screen h-auto pt-40 px-8">
-        <div class="px-20">
-            <div class="w-full justify-center flex flex-row">
-                <h1 class="flex items-center gap-4 text-4xl font-extrabold">Key<span class="bg-emerald-100 text-emerald-800 text-2xl font-semibold px-2.5 py-0.5 rounded-sm">FEATURES</span></h1>
-            </div>
-
-            <div class="mt-10 flex flex-row gap-4 items-center justify-center">
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <div class="p-3 bg-emerald-100 rounded-full w-fit flex items-center justify-center">
-                        <svg class="w-5 h-5 text-emerald-600 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M288 0L400 0c8.8 0 16 7.2 16 16l0 64c0 8.8-7.2 16-16 16l-79.3 0 89.6 64L512 160c35.3 0 64 28.7 64 64l0 224c0 35.3-28.7 64-64 64l-176 0 0-112c0-26.5-21.5-48-48-48s-48 21.5-48 48l0 112L64 512c-35.3 0-64-28.7-64-64L0 224c0-35.3 28.7-64 64-64l101.7 0L256 95.5 256 32c0-17.7 14.3-32 32-32zm48 240a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM80 224c-8.8 0-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-32 0zm368 16l0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zM80 352c-8.8 0-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-32 0zm384 0c-8.8 0-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-32 0z"/></svg>
-                    </div>
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Barangay-Level Geographic Mapping</h5>
-                    </a>
-                    <p class="font-normal text-gray-500">Visualize unemployment statistics per barangay using an interactive map. Quickly identify areas with the highest need for support and intervention.</p>
-                </div>
-
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <div class="p-3 bg-emerald-100 rounded-full w-fit flex items-center justify-center">
-                        <svg class="w-5 h-5 text-emerald-600 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 80c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 352c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-352zM0 272c0-26.5 21.5-48 48-48l32 0c26.5 0 48 21.5 48 48l0 160c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48L0 272zM368 96l32 0c26.5 0 48 21.5 48 48l0 288c0 26.5-21.5 48-48 48l-32 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48z"/></svg>
-                    </div>
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Facebook Integration for Public Awareness</h5>
-                    </a>
-                    <p class="font-normal text-gray-500">Automatically posts updated summaries of unemployment data to official Facebook channels, ensuring broad public access to the latest statistics.</p>
-                </div>
-
-                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <div class="p-3 bg-emerald-100 rounded-full w-fit flex items-center justify-center">
-                        <svg class="w-5 h-5 text-emerald-600 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM288 176c0-44.2-35.8-80-80-80s-80 35.8-80 80c0 48.8 46.5 111.6 68.6 138.6c6 7.3 16.8 7.3 22.7 0c22.1-27 68.6-89.8 68.6-138.6zm-112 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
-                    </div>
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Secure Data Management for Authorized Users</h5>
-                    </a>
-                    <p class="font-normal text-gray-500">Local administrators and government staff can input, update, and manage unemployment information efficiently through a secure portal.</p>
-                </div>
-
-            </div>
+    <div class="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+      <figure class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="flex gap-0.5 text-amber-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
         </div>
+        <blockquote class="mt-4 text-sm leading-relaxed text-gray-700">
+          "We used to compile unemployment reports by hand every quarter. Now
+          the map updates itself and Facebook posts go out automatically. Our
+          staff saves 20+ hours a week."
+        </blockquote>
+        <figcaption
+          class="mt-5 flex items-center gap-3 border-t border-gray-100 pt-4"
+        >
+          <div
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xs font-bold text-white"
+          >
+            MR
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-900">Maria Reyes</p>
+            <p class="text-xs text-gray-500">PESO Officer · Pagadian City</p>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="flex gap-0.5 text-amber-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+        </div>
+        <blockquote class="mt-4 text-sm leading-relaxed text-gray-700">
+          "I found three qualified staff for our sari-sari supply business in
+          one week. The location filter is a game changer — no more no-shows
+          because of commute distance."
+        </blockquote>
+        <figcaption
+          class="mt-5 flex items-center gap-3 border-t border-gray-100 pt-4"
+        >
+          <div
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xs font-bold text-white"
+          >
+            JT
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-900">Joseph Tan</p>
+            <p class="text-xs text-gray-500">Owner · Tan Wholesale Trading</p>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="flex gap-0.5 text-amber-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+        </div>
+        <blockquote class="mt-4 text-sm leading-relaxed text-gray-700">
+          "The Facebook integration is brilliant. Our barangay page now reaches
+          residents who never visit the city hall portal — the reach has more
+          than tripled."
+        </blockquote>
+        <figcaption
+          class="mt-5 flex items-center gap-3 border-t border-gray-100 pt-4"
+        >
+          <div
+            class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xs font-bold text-white"
+          >
+            AL
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-900">Anna Lim</p>
+            <p class="text-xs text-gray-500">Barangay Secretary · San Jose</p>
+          </div>
+        </figcaption>
+      </figure>
     </div>
+  </section>
 
-    <div id="objectives" class="bg-white w-screen h-auto pt-40 px-8 mb-50">
-        <div class="px-40">
-            <h1 class="flex items-center gap-4 text-4xl font-extrabold">
-                <svg class="w-7 h-7 text-emerald-600 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
-                Project Objectives</h1>
-            <ol class="relative border-s border-gray-200 mt-10">                  
-                <li class="mb-10 ms-4">
-                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-                    <h3 class="text-lg font-semibold text-gray-900">Implemented an interactive geographic mapping feature</h3>
-                    <p class="mb-4 text-base font-normal text-gray-500">that displays unemployment statistics at the barangay level, allowing for clear, location-based visualization.</p>
-                </li>
-                <li class="mb-10 ms-4">
-                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-                    <h3 class="text-lg font-semibold text-gray-900">Integrated the system with Facebook</h3>
-                    <p class="mb-4 text-base font-normal text-gray-500">Enabling the automated posting of summarized unemployment data to increase public awareness and accessibility.</p>
-                </li>
-                <li class="mb-10 ms-4">
-                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
-                    <h3 class="text-lg font-semibold text-gray-900">Developed a secure and user-friendly data input module</h3>
-                    <p class="mb-4 text-base font-normal text-gray-500">for authorized personnel to encode, update, and manage unemployment records efficiently.</p>
-                </li>
-            </ol>
+  <!-- ========== OBJECTIVES ========== -->
+  <section id="objectives" class="border-y border-gray-200 bg-gray-50/70">
+    <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700"
+          >
+            Our mission
+          </span>
+          <h2
+            class="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            Built to close the gap between data and opportunity
+          </h2>
+          <p class="mt-4 text-gray-600">
+            The Job Matching Analysis capstone project modernizes how Pagadian City tracks
+            unemployment, connects talent to work, and shares information
+            through channels people already use every day.
+          </p>
 
-
+          <dl class="mt-8 grid grid-cols-2 gap-6">
+            <div>
+              <dt class="text-3xl font-bold tracking-tight text-emerald-700">
+                54
+              </dt>
+              <dd
+                class="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500"
+              >
+                Barangays supported
+              </dd>
+            </div>
+            <div>
+              <dt class="text-3xl font-bold tracking-tight text-emerald-700">
+                3
+              </dt>
+              <dd
+                class="mt-1 text-xs font-medium uppercase tracking-widest text-gray-500"
+              >
+                Role portals
+              </dd>
+            </div>
+          </dl>
         </div>
+
+        <div class="space-y-4">
+          <div
+            class="flex gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+          >
+            <span
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-sm font-bold text-emerald-700"
+              >01</span
+            >
+            <div>
+              <h3 class="text-sm font-bold text-gray-900">
+                Interactive geographic mapping
+              </h3>
+              <p class="mt-1 text-sm text-gray-600">
+                Displays unemployment and job availability per barangay for
+                location-based decisions.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+          >
+            <span
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-sm font-bold text-emerald-700"
+              >02</span
+            >
+            <div>
+              <h3 class="text-sm font-bold text-gray-900">
+                Skills-based matching engine
+              </h3>
+              <p class="mt-1 text-sm text-gray-600">
+                Analyzes profiles against postings and ranks by skill fit,
+                qualification, and location.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+          >
+            <span
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-sm font-bold text-emerald-700"
+              >03</span
+            >
+            <div>
+              <h3 class="text-sm font-bold text-gray-900">
+                Facebook auto-dissemination
+              </h3>
+              <p class="mt-1 text-sm text-gray-600">
+                Publishes job vacancies and summaries to increase public reach
+                and transparency.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+          >
+            <span
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-sm font-bold text-emerald-700"
+              >04</span
+            >
+            <div>
+              <h3 class="text-sm font-bold text-gray-900">
+                Secure records management
+              </h3>
+              <p class="mt-1 text-sm text-gray-600">
+                Role-based access for encoders, employers, and LGU
+                administrators with full audit trails.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <footer class="bg-white border-t border-gray-500 z-40">
-        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-            <div class="md:flex md:justify-between">
-            <div class="mb-6 md:mb-0">
-                <a href="" class="flex items-center gap-3">
-                    <img src="/img/logo.jpg" class="bg-white rounded-full w-10 h-10">
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap">UMSRT</span>
-                </a>
-            </div>
-            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Resources</h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                        <li class="mb-4">
-                            <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
-                        </li>
-                        <li>
-                            <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Follow us</h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                        <li class="mb-4">
-                            <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
-                        </li>
-                        <li>
-                            <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Legal</h2>
-                    <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                        <li class="mb-4">
-                            <a href="#" class="hover:underline">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <!-- ========== FINAL CTA ========== -->
+  <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 hidden">
+    <div
+      class="relative overflow-hidden rounded-3xl bg-gray-900 px-8 py-16 shadow-2xl sm:px-16"
+    >
+      <div
+        class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl"
+      ></div>
+      <div
+        class="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-sky-500/20 blur-3xl"
+      ></div>
+
+      <div class="relative mx-auto max-w-2xl text-center hidden">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Ready to see where your talent lives?
+        </h2>
+        <p class="mt-4 text-lg text-gray-300">
+          Start mapping unemployment, matching skills to jobs, and publishing to
+          Facebook — all from one dashboard.
+        </p>
+        <div
+          class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <a
+            href="/admin/login"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-lg transition hover:bg-gray-100 sm:w-auto"
+          >
+            Get started free
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="#features"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10 sm:w-auto"
+          >
+            Explore the platform
+          </a>
         </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="#" class="hover:underline">UMSRT</a>. All Rights Reserved.
+        <p class="mt-6 text-xs text-gray-400">
+          Free for PESO offices · No setup fee · Deploy in minutes
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-5">
+        <div class="col-span-2">
+          <a href="/" class="flex items-center gap-2.5">
+            <img src="/img/logo.jpg" class="h-9 w-9 rounded-xl shadow-sm" />
+            <span class="text-lg font-bold tracking-tight">
+              Job<span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-sky-500"
+                >Match</span
+              >
             </span>
-            <div class="flex mt-4 sm:justify-center sm:mt-0">
-                <a href="#" class="text-gray-500 hover:text-gray-900">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                            <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
-                        </svg>
-                    <span class="sr-only">Facebook page</span>
-                </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900 ms-5">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-                            <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
-                        </svg>
-                    <span class="sr-only">Discord community</span>
-                </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900 ms-5">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
-                        <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="sr-only">Twitter page</span>
-                </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900 ms-5">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="sr-only">GitHub account</span>
-                </a>
-                <a href="#" class="text-gray-500 hover:text-gray-900 ms-5">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="sr-only">Dribbble account</span>
-                </a>
-            </div>
+          </a>
+          <p class="mt-4 max-w-xs text-sm text-gray-500">
+            Real-time job matching and unemployment monitoring through social
+            media mapping.
+          </p>
+          <div class="mt-5 flex gap-2">
+            <a
+              href="#"
+              class="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 text-gray-500 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 8 19"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 text-gray-500 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 21 16"
+              >
+                <path
+                  d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 text-gray-500 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 17"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="flex h-9 w-9 items-center justify-center rounded-xl border border-gray-200 text-gray-500 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
+            >
+              <svg
+                class="w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
+
+        <div>
+          <h3
+            class="text-[10px] font-bold uppercase tracking-widest text-gray-900"
+          >
+            Product
+          </h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-500">
+            <li>
+              <a href="#features" class="transition hover:text-emerald-700"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a href="#how" class="transition hover:text-emerald-700"
+                >How it works</a
+              >
+            </li>
+            <li>
+              <a href="#customers" class="hidden transition hover:text-emerald-700"
+                >Customers</a
+              >
+            </li>
+            <li>
+              <a href="#objectives" class="transition hover:text-emerald-700"
+                >Objectives</a
+              >
+            </li>
+          </ul>
         </div>
-    </footer>
+
+        <div>
+          <h3
+            class="text-[10px] font-bold uppercase tracking-widest text-gray-900"
+          >
+            Access
+          </h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-500">
+            <li>
+              <a href="/users/login" class="transition hover:text-emerald-700"
+                >Job seeker</a
+              >
+            </li>
+            <li>
+              <a
+                href="/employer/login"
+                class="transition hover:text-emerald-700"
+                >Employer</a
+              >
+            </li>
+            <li>
+              <a href="/admin/login" class="transition hover:text-emerald-700"
+                >Admin</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3
+            class="text-[10px] font-bold uppercase tracking-widest text-gray-900"
+          >
+            Resources
+          </h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-500">
+            <li>
+              <a href="#" class="transition hover:text-emerald-700"
+                >Documentation</a
+              >
+            </li>
+            <li>
+              <a href="#" class="transition hover:text-emerald-700">Privacy</a>
+            </li>
+            <li>
+              <a href="#" class="transition hover:text-emerald-700">Terms</a>
+            </li>
+            <li>
+              <a href="#" class="transition hover:text-emerald-700">Support</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 sm:flex-row"
+      >
+        <p class="text-xs text-gray-500">
+          © 2025 Job Matching Analysis. All rights reserved.
+        </p>
+        <p class="text-xs text-gray-500">
+          Built as a capstone project · Pagadian City, Zamboanga del Sur
+        </p>
+      </div>
+    </div>
+  </footer>
 </div>
