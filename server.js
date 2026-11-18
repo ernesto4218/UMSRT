@@ -501,6 +501,7 @@ app.get("/employer/candidates/:id", async (req, res) => {
     last_name: d.last_name || "",
     name: [d.first_name, d.middle_name, d.last_name].filter(Boolean).join(" "),
     email: d.email || "",
+    phone_number: d.phone_number || "",
     age: Number(d.age) || null,
     date_of_birth: d.date_of_birth || "",
     barangay: d.barangay || "",
